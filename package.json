@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.3",
+    "nodemon": "^2.0.22"
+  },
+  "name": "topic-based-discussion-website",
+  "description": "A topic based discussion website made using Node, ExpressJS, EJS and MongoDB",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soumil4561/topic-based-discussion-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Soumil4561/topic-based-discussion-website/issues"
+  },
+  "homepage": "https://github.com/Soumil4561/topic-based-discussion-website#readme"
+}
