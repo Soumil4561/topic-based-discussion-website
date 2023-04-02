@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs") -%>
+<%- include("partials/navbar.ejs") -%>
+<%- include("partials/sidebar.ejs") -%>
+
+<% if (false) { %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Home</h1>
+                <p>Welcome to the home page!</p>
+            </div>
+
+        </div>
+    </div>
+<% } else { %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Home</h1>
+                <p>Welcome to the home page!</p>
+                <p><a href="/login">Login</a> or <a href="/register">register</a> to get started.</p>
+            </div>
+        </div>
+    </div>
+<% } %>

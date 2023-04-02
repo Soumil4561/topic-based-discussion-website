@@ -1,16 +1,17 @@
 {
   "dependencies": {
     "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "mongodb": "^5.1.0",
     "mongoose": "^7.0.3",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "passport-local": "^1.0.0"
   },
   "name": "topic-based-discussion-website",
   "description": "A topic based discussion website made using Node, ExpressJS, EJS and MongoDB",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
