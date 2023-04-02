@@ -1,0 +1,12 @@
+h1{
+    color: #db5959;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #000;
+}
