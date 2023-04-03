@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const {createnewTopic,getUserFollowedTopicsTest} = require('./database/topic.js');
+const {createnewPost, getUserPostTest} = require('./database/post.js');
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,11 +23,30 @@ app.get('/', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-    res.render('home.ejs');
+    // topicName , posted by , topicDescription, topicImage
+    topics = getUserFollowedTopicsTest();
+    posts = getUserPostTest();
+    res.render('home.ejs', {topics: topics, posts: posts});
 });
 
 app.get('/login', (req, res) => {
     res.render('login.ejs');
+});
+
+app.get("/test", (req, res) => {
+    topicObject = {
+        name: "test",
+        description: "test",
+        creator: {
+            id: "test",
+            name: "test"
+        },
+        image: "test",
+        posts: [],
+        followers: []
+    }
+    createnewTopic(topicObject);
+    res.send("test");
 });
 
 app.post('/login', (req, res) => {
