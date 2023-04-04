@@ -1,0 +1,33 @@
+<%- include("partials/header.ejs") -%>
+<%- include("partials/navbar.ejs") -%>
+<div class="content-body">
+    <div class="content-container">
+<%- include("partials/sidebar.ejs") -%>
+<div class="postBox">
+    <% posts.forEach(function(post){ %>
+        <div class="post">
+            <div class="post-details">
+            <span class="postTopic"> <%= post.topic %> </span>
+            <span class="postAuthor"><%= post.author %></span>
+            <span class="postDate"><%= post.date %></span>
+            </div>
+            <h2 class="postTitle"><%= post.title %></h2>
+            <% if(post.postImage != null){ %>
+                <div class="postImage">
+                    <img src="<%= post.postImage %>" alt="post image" class="postImage">
+                </div> 
+            <% } %>
+            
+            <div class="postImage">
+                <img src="<%= post.image %>" alt="post image" class="postImage">
+            </div> 
+            <div>
+                <button class="postButton">Enter Discussion</button>
+                <button class="postButton">Save</button>
+            </div>
+        </div>
+    <% }); %>
+</div>
+</div>
+</div>
+

@@ -1,0 +1,305 @@
+:root{
+    --primary-text-color: #D6D3CD;
+    --secondary-text-color: #BD3402;
+    --primary-color: #030303;
+    --secondary-color: #1A1A1B;
+    --tertiary-color: #2C3333;
+}
+body{
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    color: var(--primary-text-color);
+    background-color: var(--primary-color);
+}
+
+.navbar{
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    padding-top: 2px;
+    height: 50px;
+    font-size: 10px;
+}
+
+.searchText{
+    background-color: var(--tertiary-color);
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 20px;
+    padding: 0 1rem;
+    margin-right: 10px;
+
+}
+.navbar .searchText{
+    height: 30px;
+    width: 500px;
+}
+.searchText:focus{
+    outline: none;
+}
+.icon-button{
+    background-color: var(--secondary-color);
+    border: none;
+    color: var(--primary-text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    padding-bottom: 5px;
+}
+.icon-button:hover{
+    border-bottom: 1px solid var(--secondary-text-color);
+}
+.navbar button{
+    background-color: var(--secondary-color);
+    border: none;
+    color: var(--primary-text-color);
+    font-size: 1rem;
+    cursor: pointer;
+}
+.content-body{
+    display: flex;
+    justify-content: space-evenly   ;
+}
+.content-container{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar{
+    margin-top: 30px;
+}
+.create-container{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--primary-text-color);
+}
+.interest-container{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    padding-bottom: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--primary-text-color);
+}
+.sidebar .create-container button{
+    background-color: var(--secondary-text-color);
+    border: none;
+    color: var(--primary-text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+.sidebar .create-container button:hover{
+    background-color: var(--primary-text-color);
+    color: var(--primary-text-color);
+}
+.sidebar .interest-container div{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: center;
+}
+.sidebar .interest-container .searchText{
+    width: 150px;
+    height: 30px;
+    margin-right: 10px;
+}
+.postBox{
+    margin-top: 10px;
+}
+.post{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    margin: 20px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--primary-text-color);
+}
+.post .post-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    align-items: center;
+}
+.postTopic{
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+
+/*
+.navbar{
+    display: flex;
+    
+font-family: 'Pacifico', cursive;
+   
+}
+
+.button{
+    background-color: #46C2CB;
+    color: black ;
+    position: absolute;
+    right: 35%;
+    margin-top: 30px;
+    width: 120px;
+    border-radius: 5px;
+    height: 35px;
+    
+}
+.button:hover{
+    background-color: aquamarine;
+}
+
+.searchText{
+    height: 30px;
+    margin-right: 15px;
+    margin-top: 30px;
+    position: absolute;
+    right: 45%;
+    width: 300px;
+    border-radius: 5px;
+}
+
+.img{
+    position: absolute ;
+    right: 30px;
+    margin-top: 25px;
+}
+
+
+
+.sidebar{
+    position: absolute;
+    left: 0;
+
+    width: 17%;
+    height: 100%;
+    background-color: #2C3333;
+    color: #E49393;
+    padding: 20px;
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-color: #E49393;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+  
+    text-decoration: none;
+    text-align: center;
+    
+    text-overflow: ellipsis;
+    text-indent: 0px;
+    text-shadow: 0 0 10px #E49393;
+    text-decoration: none;
+    text-align: center;
+    
+    text-overflow: ellipsis;
+    text-indent: 0px;
+    text-shadow: 0 0 10px #E49393;
+    text-decoration: none;
+    text-align: center;
+    
+    text-overflow: ellipsis;
+    text-indent: 0px;
+    text-shadow: 0 0 10px #E49393;
+    text-decoration: none;
+    text-align: center;
+}
+
+.postBox{
+    position: absolute;
+    left: 17%;
+    width: 83%;
+    height: 100%;
+    background-color: #2C3333;
+    color: #E49393;
+    padding: 20px;
+    font-family: 'Merriweather', serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px;
+    text-decoration: none;
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-color: #E49393;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+  
+    text-decoration: none;
+    text-align: center;
+    
+    text-overflow: ellipsis;
+    text-indent: 0px;
+    text-shadow: 0 0 10px #E49393;
+    text-decoration: none;
+    text-align: center;
+    
+    text-overflow: ellipsis;
+    text-indent: 0px;
+    text-shadow: 0 0 10px #E49393;
+    text-decoration: none;
+    text-align: center;
+    
+    text-overflow: ellipsis;
+    text-indent: 0px;
+    text-shadow: 0 0 10px #E49393;
+    text-decoration: none;
+    text-align: center;
+} */
