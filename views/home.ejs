@@ -1,14 +1,16 @@
 <%- include("partials/header.ejs") -%>
 <%- include("partials/navbar.ejs") -%>
-<hr/>
+<div class="content-body">
+    <div class="content-container">
 <%- include("partials/sidebar.ejs") -%>
-
 <div class="postBox">
     <% posts.forEach(function(post){ %>
         <div class="post">
-            <h3 class="postTopic"> <%= post.topic %> </h3>
-            <h3 class="postAuthor"><%= post.author %></h3>
-            <h3 class="postDate"><%= post.date %></h3>
+            <div class="post-details">
+            <span class="postTopic"> <%= post.topic %> </span>
+            <span class="postAuthor"><%= post.author %></span>
+            <span class="postDate"><%= post.date %></span>
+            </div>
             <h2 class="postTitle"><%= post.title %></h2>
             <% if(post.postImage != null){ %>
                 <div class="postImage">
@@ -26,5 +28,6 @@
         </div>
     <% }); %>
 </div>
-
+</div>
+</div>
 
