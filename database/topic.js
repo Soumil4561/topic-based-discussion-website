@@ -99,13 +99,12 @@ const getUserFollowedTopics = function(userId) {
             console.log(err);
         }
         else {
-            return topics;
+            console.log("hello");
         }
     });
 }
 
 const getUserFollowedTopicsTest = function(userId) {
-    topics: ['topic1', 'topic2', 'topic3'];
-    return topics;
+    return ['topic1', 'topic2', 'topic3'];
 }
 module.exports = {createnewTopic, getUserTopics, getUserFollowedTopics, getUserFollowedTopicsTest};

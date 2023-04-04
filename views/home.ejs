@@ -2,29 +2,29 @@
 <%- include("partials/navbar.ejs") -%>
 <hr/>
 <%- include("partials/sidebar.ejs") -%>
-<div class="vl"> 
-   
+
+<div class="postBox">
+    <% posts.forEach(function(post){ %>
+        <div class="post">
+            <h3 class="postTopic"> <%= post.topic %> </h3>
+            <h3 class="postAuthor"><%= post.author %></h3>
+            <h3 class="postDate"><%= post.date %></h3>
+            <h2 class="postTitle"><%= post.title %></h2>
+            <% if(post.postImage != null){ %>
+                <div class="postImage">
+                    <img src="<%= post.postImage %>" alt="post image" class="postImage">
+                </div> 
+            <% } %>
+            
+            <div class="postImage">
+                <img src="<%= post.image %>" alt="post image" class="postImage">
+            </div> 
+            <div>
+                <button class="postButton">Enter Discussion</button>
+                <button class="postButton">Save</button>
+            </div>
+        </div>
+    <% }); %>
 </div>
 
 
-<!-- <% if (false) { %>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Home</h1>
-                <p>Welcome to the home page!</p>
-            </div>
-
-        </div>
-    </div>
-<% } else { %>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Home</h1>
-                <p>Welcome to the home page!</p>
-                <p><a href="/login">Login</a> or <a href="/register">register</a> to get started.</p>
-            </div>
-        </div>
-    </div>
-<% } %> -->
