@@ -62,6 +62,17 @@ app.post('/login', (req, res) => {
     }
 });
 
+app.get('/addPost' , (req ,res) =>{
+    res.render('post.ejs');
+});
+
+app.post('/addPost', (req ,res) => {
+    const postName = req.body.postName;
+    const postDescription = req.body.postDescription;
+    const postImage = req.body.inputImage;
+    res.redirect('/home');
+})
+
 app.listen(PORT, () => {
     console.log('Server started on port 3000');
 });
