@@ -84,7 +84,7 @@ const getUserPostTest = function(){
             id: "123",
             name: "Test User"
         },
-        image: "https://www.w3schools.com/w3css/img_lights.jpg",
+        image: "https://wallpapercave.com/wp/wp2848189.jpg",
         topic: "Test Topic",
         date: new Date(),
         comments: [{
