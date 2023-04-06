@@ -10,7 +10,6 @@ body{
     font-family: 'Merriweather', serif;
     color: var(--primary-text-color);
     background-color: var(--primary-color);
-
 }
 
 .navbar{
@@ -78,10 +77,9 @@ body{
 .about-container{
     position: sticky;
     top: 80px;
-
     margin-top: 30px;
-    width: 300px;
-    height: 600px;
+    width: 25%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,7 +93,8 @@ body{
 .interest-container{
     position: sticky;
     top: 80px;
-    width: 300px;
+    width: 20%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -108,36 +107,26 @@ body{
     border-style: solid;
     border-color: var(--primary-text-color);
 }
-.sidebar .create-container button{
-    background-color: var(--secondary-text-color);
-    border: none;
-    color: var(--primary-text-color);
-    font-size: 1rem;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    margin-top: 10px;
-}
-.sidebar .create-container button:hover{
-    background-color: var(--primary-text-color);
-    color: var(--primary-text-color);
-}
-.sidebar .interest-container div{
+
+.interest-container div{
    display: flex;
    flex-direction: row;
    align-items: center;
    justify-content: center;
 }
-.sidebar .interest-container .searchText{
+.interest-container .searchText{
     width: 150px;
     height: 30px;
     margin-right: 10px;
+    color: var(--primary-text-color)        ;
 }
 .postBox{
     margin-top: 10px;
+    width: 50%;
+    margin-right: 10px;
 }
 .post{
-    width: 700px;
+    width: 90%;
     display: flex;
     flex-direction: column;
     padding: 20px;
