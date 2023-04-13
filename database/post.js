@@ -76,6 +76,7 @@ const getUserPosts = function(topics) {
 }
 
 const getUserPostTest = function(){
+    
     let post = [];
     unaryPost = {
         name: "Test Post",
