@@ -1,8 +1,8 @@
 :root{
     --primary-text-color: #D6D3CD;
-    --secondary-text-color: #0E8388;
-    --primary-color: #2C3333;
-    --secondary-color: #2E4F4F;
+    --secondary-text-color: #BD3402;
+    --primary-color: #2c3333;
+    --secondary-color: #2e4f4f;
     --tertiary-color: #2C3333;
 }
 body{
@@ -10,8 +10,21 @@ body{
     font-family: 'Merriweather', serif;
     color: var(--primary-text-color);
     background-color: var(--primary-color);
-
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 }
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 
 .navbar{
     background-color: var(--secondary-color);
@@ -78,24 +91,24 @@ body{
 .about-container{
     position: sticky;
     top: 80px;
-
     margin-top: 30px;
-    width: 300px;
-    height: 600px;
+    width: 25%;
+    height: 40%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--secondary-color);
+    background-color: #0071E2;
     border-radius: 8px;
     padding: 10px;
     border-width: 1px;
     border-style: solid;
-    border-color: var(--primary-text-color);
+    border-color: var(--primary-color);
 }
 .interest-container{
     position: sticky;
     top: 80px;
-    width: 300px;
+    width: 20%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,38 +119,28 @@ body{
     border-radius: 8px;
     border-width: 1px;
     border-style: solid;
-    border-color: var(--primary-text-color);
+    border-color: var(--primary-color);
 }
-.sidebar .create-container button{
-    background-color: var(--secondary-text-color);
-    border: none;
-    color: var(--primary-text-color);
-    font-size: 1rem;
-    cursor: pointer;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    margin-top: 10px;
-}
-.sidebar .create-container button:hover{
-    background-color: var(--primary-text-color);
-    color: var(--primary-text-color);
-}
-.sidebar .interest-container div{
+
+.interest-container div{
    display: flex;
    flex-direction: row;
    align-items: center;
    justify-content: center;
 }
-.sidebar .interest-container .searchText{
+.interest-container .searchText{
     width: 150px;
     height: 30px;
     margin-right: 10px;
+    color: var(--primary-text-color)        ;
 }
 .postBox{
     margin-top: 10px;
+    width: 50%;
+    margin-right: 10px;
 }
 .post{
-    width: 700px;
+    width: 90%;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -146,7 +149,7 @@ body{
     border-radius: 5px;
     border-width: 1px;
     border-style: solid;
-    border-color: var(--primary-text-color);
+    border-color: var(--primary-color);
 }
 .postImage{
     background-color: #030303;
@@ -172,10 +175,15 @@ body{
 .bottom-buttons{
     margin-top: 10px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    font-size: 10px;
+    align-items: left;
+}
+.userPost{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
 }
 
 .postButton{
@@ -187,6 +195,46 @@ body{
 .postButton:hover{
     color: var(--secondary-text-color);
 }
-.postButton i{
-    margin-left: 5px;
+
+.postBody{
+    max-width: 60%;
+    border-radius: 5px;
+    margin-left: 5%;
+    background-color: #030303;
+    color: white;
+}
+
+input#file-input{
+    display: none;
+}
+
+input#file-input + label{
+    background-color: #4d8cf2;
+    width: 120px;
+    height: 20px;
+    border-radius: 9px;
+    font-size: 15px;
+    border: 2px solid #9ec3ff;
+    text-align: center;
+}
+
+.button-submit{
+    background-color: var(--secondary-text-color);
+    border: none;
+    color: var(--primary-text-color);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-bottom: 10px;
+}
+
+textarea{
+    resize: none;
+}
+
+.create-post-title{
+    margin-left: 5%;
 }
