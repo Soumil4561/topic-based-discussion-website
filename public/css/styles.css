@@ -1,28 +1,15 @@
 :root{
     --primary-text-color: #D6D3CD;
-    --secondary-text-color: #BD3402;
-    --primary-color: #2c3333;
-    --secondary-color: #2e4f4f;
-    --tertiary-color: #2C3333;
+    --secondary-text-color: #66b2ff;
+    --primary-color: #00264b;
+    --secondary-color: #071a2e;
+    --tertiary-color: #0077ef;
 }
 body{
     margin: 0;
     font-family: 'Merriweather', serif;
     color: var(--primary-text-color);
     background-color: var(--primary-color);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-}
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
 }
 
 
@@ -47,6 +34,9 @@ body{
     border-radius: 20px;
     padding: 0 1rem;
     margin-right: 10px;
+    color: var(--primary-text-color);
+    font-size: medium;
+    font-weight: 100;
 
 }
 .navbar .searchText{
@@ -238,3 +228,8 @@ textarea{
 .create-post-title{
     margin-left: 5%;
 }
+
+
+
+/*------------------ login page--------------------------- */
+
