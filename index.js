@@ -4,14 +4,28 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
-const router = require('./routes/auth.js');
-app.use('/', router);
+const passport = require('passport');
+const session = require('express-session');
+const passportLocalMongoose = require("passport-local-mongoose");
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+const homeRouter = require('./routes/home.js');
+app.use('/', homeRouter);
+
+const authRouter = require('./routes/auth.js');
+app.use('/auth', authRouter);
 
 const PORT = process.env.PORT || 3000;
 
