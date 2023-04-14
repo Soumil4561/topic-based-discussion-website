@@ -1,96 +1,119 @@
-:root{
-    --primary-text-color: #D6D3CD;
-    --secondary-text-color: #66b2ff;
-    --primary-color: #00264b;
-    --secondary-color: #071a2e;
-    --tertiary-color: #0077ef;
+:root {
+    --primary-text-color: #e9ddd0;
+    --secondary-text-color: #e9ddd0;
+    --primary-color: #e9ddd0;
+    --secondary-color: #2a2623;
+    --tertiary-color: #cc9f8c;
 }
-body{
+
+body {
     width: 100vw;
     height: 100vh;
     margin: 0;
     font-family: 'Merriweather', serif;
-    color: var(--primary-text-color);
-    background: linear-gradient(45deg, var(--secondary-color),var(--primary-color),var(--tertiary-color));
+    color: var(--primary-text-color);   
 }
-.logo{
+
+.bg{
+    display: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSxFQAQePHX-3kszSKyXuAFFaw1rFvZ4RjEVgxmIYfdcvlvm_bI);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: blur(5px);
+    margin: 0;
+}
+
+.logo {
     height: 10%;
     width: 10%;
     position: absolute;
     top: 5%;
     left: 5%;
 }
-.logo h1{
+
+.logo h1 {
+    display: flex;
     font-size: 3rem;
     font-weight: 2000;
     color: var(--primary-text-color);
 }
-.form-container{
-    position: absolute;
-    top: 10%;
-    right: 5%;
-    height: 75vh;
-    width: 60vh;
-    background-color: var(--secondary-color);
-    border-radius: 20px;
-    box-shadow: #0077ef 0px 0px 10px;
+
+.logo i {
+    margin-right: 10px;
 }
-.form-input i{
-    background-color:transparent;
+
+.form-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 40vw;
+    background-color: rgba(0, 0, 0, 0.6) ;
+}
+
+.form-input i {
+    background-color: transparent;
     border: none;
     color: var(--primary-text-color);
     font-size: 1.5rem;
+    margin-right: 20px;
 }
-.form-container .form{
+
+.form-container .form {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
     width: 100%;
-    margin-top: 10%;    
 }
 
-.other-methods button{
-    background-color:transparent;
+.other-methods button {
+    background-color: transparent;
     border: none;
     color: var(--primary-text-color);
     font-size: 1.5rem;
-    cursor: pointer;    
+    cursor: pointer;
 }
-.other-methods button:hover{
-    color:var(--secondary-text-color)
+
+.other-methods button:hover {
+    color: var(--secondary-text-color)
 }
-.form-input{
-    margin-top: 15%;
+
+.form-input {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 40%;
     width: 100%;
+    margin-top: 20%;
+    margin-bottom: 10%;
 }
 
-    .form-input div{
-        width: 100%;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-    .form-input div input{
-        margin-left: 5px;
-        width: 50%;
-        height: 100%;
-        border: none;
-        border-radius: 20px;
-        padding: 0 1rem;
-        color: var(--primary-text-color);
-        font-size: medium;
-        font-weight: 100;
-        background-color: var(--tertiary-color);
-    }
-.submit-button{
-    margin-top: 10%;
+.form-input div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px; 
+    margin: 1.5rem 0;
+}
+
+.form-input div input {
+    width: 50%;
+    height: 100%;
+    border: none;
+    border-radius: 20px;
+    padding: 0 1rem;
+    color: var(--primary-text-color);
+    font-size: medium;
+    font-weight: 100;
+    background-color: var(--tertiary-color);
+}
+
+.submit-button {
     width: 25%;
     height: 40px;
     border: none;
@@ -100,5 +123,5 @@ body{
     font-weight: 100;
     background-color: var(--tertiary-color);
     cursor: pointer;
-    
+
 }

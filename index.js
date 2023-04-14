@@ -35,6 +35,9 @@ app.get('/home', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login.ejs');
 });
+app.get('/topic', (req, res) => {
+    res.render('topic.ejs');
+});
 
 app.get("/test", (req, res) => {
     topicObject = {

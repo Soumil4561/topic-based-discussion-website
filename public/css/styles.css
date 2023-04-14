@@ -1,18 +1,27 @@
 :root{
-    --primary-text-color: #D6D3CD;
-    --secondary-text-color: #66b2ff;
-    --primary-color: #00264b;
-    --secondary-color: #071a2e;
-    --tertiary-color: #0077ef;
-}
+    --primary-text-color: #2a2623;
+    --secondary-text-color: brown;
+    --primary-color: #e9ddd0;
+    --secondary-color: #2a2623;
+    --tertiary-color: #cc9f8c;
+}   
 body{
     margin: 0;
-    font-family: 'Merriweather', serif;
+    font-family: 'Merriweather', serif; 
     color: var(--primary-text-color);
     background-color: var(--primary-color);
 }
-
-
+.logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.logo i{
+    font-size: 1.5rem;
+    color: var(--secondary-text-color);
+    margin-right: 10px;
+}
 .navbar{
     background-color: var(--secondary-color);
     display: flex;
@@ -24,6 +33,7 @@ body{
     font-size: 10px;
     position: sticky;
     top: 0;
+    z-index: 1;
 }
 
 .searchText{
@@ -87,7 +97,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #0071E2;
+    background-color: var(--secondary-color);
     border-radius: 8px;
     padding: 10px;
     border-width: 1px;
@@ -199,7 +209,7 @@ input#file-input{
 }
 
 input#file-input + label{
-    background-color: #4d8cf2;
+    background-color: var(--secondary-text-color);
     width: 120px;
     height: 20px;
     border-radius: 9px;
@@ -231,5 +241,6 @@ textarea{
 
 
 
-/*------------------ login page--------------------------- */
+/*------------------ Topic Page--------------------------- */
+
 
