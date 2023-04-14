@@ -4,6 +4,7 @@ const {createnewTopic,getUserFollowedTopicsTest} = require('../database/topic.js
 const {createnewPost, getUserPostTest} = require('../database/post.js');
 
 router.get('/home', (req, res) => {
+    console.log(req.isAuthenticated());
     if(req.isAuthenticated()) {
         const topics = getUserFollowedTopicsTest('123');
         const posts = getUserPostTest("req.user.id");
