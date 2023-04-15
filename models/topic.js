@@ -27,15 +27,17 @@ const topicSchema = new Schema({
         default: Date.now
     },
 
-    topicFollowers: [{
-        type: Schema.Types.ObjectId,
+    topicFollowers: {
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "User"
-    }],
+    },
 
-    topicPosts: [{
-        type: Schema.Types.ObjectId,
+    topicPosts: {
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Post"
-    }]
+    }
 });
 
 const Topic = mongoose.model("Topic", topicSchema);

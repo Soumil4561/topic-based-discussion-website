@@ -33,50 +33,59 @@ const userSchema = new Schema({
         default: Date.now
     },
     
-    topicsFollowed:[{
-        type: Schema.Types.ObjectId,
+    topicsFollowed:{
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Topic"
-    }],
+    },
     
-    topicsCreated:[{
-        type: Schema.Types.ObjectId,
+    topicsCreated:{
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Topic"
-    }],
+    },
     
-    commentsCreated:[{
-        type: Schema.Types.ObjectId,
+    commentsCreated:{
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Comment"
-    }],
+    },
     
-    savedPosts: [{
-        type: Schema.Types.ObjectId,
+    savedPosts: {
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Post"
-    }],
+    },
     
-    commentsLiked:[{
-        type: Schema.Types.ObjectId,
+    commentsLiked:{
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Comment"
-    }],
+    },
     
-    postsLiked:[{
-        type: Schema.Types.ObjectId,
+    postsLiked:{
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Post"
-    }],
+    },
     
-    postsDisliked:[{
-        type: Schema.Types.ObjectId,
+    postsDisliked:{
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Post"
-    }],
+    },
     
-    commentsDisliked:[{
-        type: Schema.Types.ObjectId,
+    commentsDisliked:{
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Comment"
-    }],
+    },
     
-    postsCreated:[{
-        type: Schema.Types.ObjectId,
+    postsCreated:{
+        type: [Schema.Types.ObjectId],
+        default: [],
         ref: "Post"
-    }]
+    }
 });
 
 userSchema.plugin(passportLocalMongoose);
