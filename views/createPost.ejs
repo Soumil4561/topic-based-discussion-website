@@ -14,16 +14,13 @@
 <div class="create-container">
 
 <form action="/post/createPost" method="post" class="userPost" >
-    <label >Title</label>
-    <input type="text" name="postName" class="postTitle">
-    <label>Post</label>
-    <textarea name="postBody" cols="30" rows="20" class="postContent"></textarea>
-    <label>Topic</label>
-    <input type="text" name="postTopic" class="postTitle">
-
-    <label>Add image</label>
+  <h1>Create Post</h1>
+    <input type="text" name="postName" class="postTitle" placeholder="Title">
+    <input type="text" name="postTopic" class="postTitle" placeholder="Topic">
+    <textarea name="postBody" cols="30" rows="20" class="postContent" placeholder="Text"></textarea>
+    <div class="file-input">
     <input type="file" accept=".jpg" name="postImage" id="file-input" >
-    <label for="file-input" ><i class="fa-solid fa-photo-film"></i></label> 
+    <label for="file-input" >Add image<i class="fa-solid fa-photo-film"></i></label> 
     </div>
     <button type="submit" name="button" onclick="myFunction()" class="button-submit">Submit</button>
 </form>
