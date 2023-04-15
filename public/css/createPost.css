@@ -1,0 +1,63 @@
+.create-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width:75%;
+    height: 80vh;
+    margin-top: 5vh;
+    background-color: var(--secondary-color);
+    margin-left: 15%;
+}
+.create-container .new-image{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    background-color: var(--secondary-color);
+    margin-left: 20%;
+}
+.create-container .create-image{
+    background-color: #030303;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    object-fit: contain;
+    height: 400px;  
+}
+.userPost{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+    background-color: var(--secondary-color); 
+    margin-left: 40px;   
+}
+.userPost input{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--tertiary-color);
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+    font-size: 15px;
+    padding-left: 10px;
+}
+.userPost textarea{
+    width: 100%;
+    height: 20%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--tertiary-color);
+    background-color: var(--primary-color);
+    color: var(--primary-text-color);
+    font-size: 15px;
+    padding-left: 10px;
+}
