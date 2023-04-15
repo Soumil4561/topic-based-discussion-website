@@ -21,22 +21,4 @@ router.get('/home', (req, res) => {
     }
 });
 
-router.get("/topic/:topicName", (req, res) => {
-    const topicName = req.params.topicName;
-
-    if (req.isAuthenticated()) {
-        Topic.find({topicName: topicName}, (err, topic) => {
-            if(err) console.log(err);
-            
-            else {
-                let posts = [];
-                topic.topicPosts.forEach(post => {
-                    posts.push(Post.findOne({_id: post}));
-                })
-                res.render('topic.ejs', {topic: topic, posts: posts});
-            }
-        });
-    }
-});
-
 module.exports = router;

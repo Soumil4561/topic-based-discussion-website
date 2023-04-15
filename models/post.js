@@ -24,29 +24,34 @@ const postSchema = new Schema({
 
     dateCreated:{
         type: Date,
+        default: Date.now,
         required: true
     },
 
     likes: {
-        type: Number,
-        required: true
+        type: Number
     },
 
     dislikes: {
-        type: Number,
-        required: true
+        type: Number
     },
 
     comments: {
-        type: Array,
+        type: Array
+    },
+
+    authorName: {
+        type: String,
         required: true
     },
 
-    userCreated:{
+    authorId: {
         type: Schema.Types.ObjectId,
         ref: "User"
     }
 });
 
 const post = mongoose.model('post', postSchema);
+
+module.exports = post;
 
