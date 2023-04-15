@@ -29,8 +29,11 @@ router.post("/createPost", (req, res) => {
         if(req.body.postImage != null) {
             post.postImage = req.body.postImage;
         }
+        if(req.user.username != null) {
+            post.postCreatorName = req.user.username;
+        }
         post.save().then((result) => {
-            Topic.findOne({_id: result.postTopic}).then((topic) => {
+            Topic.findOne({topicName: result.postTopic}).then((topic) => {
                 topic.topicPosts.push(result._id);
                 topic.save();
             }).catch((err) => console.log(err));
@@ -49,6 +52,11 @@ router.post("/createPost", (req, res) => {
 
 router.get("/:postID", (req, res) => {
     postID = req.params.postID;
+    Post.findOne({_id: postID}).then((post) => {
+        res.render('post.ejs', {post: post});
+    }).catch((err) => {
+        console.log(err);
+        res.render('404.ejs');} );
 });
 
 module.exports = router;
