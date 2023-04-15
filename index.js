@@ -33,6 +33,10 @@ app.use('/post', postRouter);
 const topicRouter = require('./routes/topic.js');
 app.use('/topic', topicRouter);
 
+app.get('*', function(req, res){
+    res.status(404).render('404.ejs');
+  });
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

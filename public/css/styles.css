@@ -239,6 +239,13 @@ textarea{
     margin-left: 5%;
 }
 
+.error{
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    object-fit: contain;
+}
+
 
 
 /*------------------ Topic Page--------------------------- */
