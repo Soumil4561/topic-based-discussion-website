@@ -2,27 +2,27 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-    title:{
+    postTitle:{
         type: String,
         required: true
     },
 
-    content:{
+    postContent:{
         type: String,
         required: true
     },
 
-    image:{
+    postImage:{
         type: String,
         required: false
     },
 
-    topic:{
+    postTopic:{
         type: String,
         required: true
     },
 
-    dateCreated:{
+    postCreated:{
         type: Date,
         default: Date.now,
         required: true
@@ -40,12 +40,13 @@ const postSchema = new Schema({
         type: Array
     },
 
-    authorName: {
+    postCreatorName: {
         type: String,
-        required: true
+        default: "Anonymous",
+        required: false
     },
 
-    authorId: {
+    postCreatorID: {
         type: Schema.Types.ObjectId,
         ref: "User"
     }

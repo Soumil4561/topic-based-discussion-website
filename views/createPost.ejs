@@ -2,13 +2,16 @@
 <%- include("partials/navbar"); -%>
 <!-- <%- include("partials/sidebar"); -%> -->
 <h1 class="create-post-title">Create Post</h1>
-<form action="/home" class="userPost" >
+<form action="/post/createPost" method="post" class="userPost" >
     <label >Title</label>
-    <input type="text" name="postName" class="postName">
+    <input type="text" name="postName" class="postTitle">
     <label>Post</label>
-    <textarea name="postBody" cols="30" rows="20" class="postBody"></textarea>
+    <textarea name="postBody" cols="30" rows="20" class="postContent"></textarea>
+    <label>Topic</label>
+    <input type="text" name="postTopic" class="postTitle">
+
     <label>Add image</label>
-    <input type="file" accept=".jpg" name="inputImage" id="file-input" >
+    <input type="file" accept=".jpg" name="postImage" id="file-input" >
     <label for="file-input" >&nbsp;Choose a file <i class="glyphicon glyphicon-open"></i></label>
     <button type="submit" name="button" onclick="myFunction()" class="button-submit">Submit</button>
 </form>

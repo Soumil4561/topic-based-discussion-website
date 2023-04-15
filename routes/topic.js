@@ -1,29 +1,11 @@
 const express = require('express');
 const router = express.Router();
-
-router.get("/:topicName", (req, res) => {
-    const topicName = req.params.topicName;
-    Topic.find({topicName: topicName})
-        .then((topic) => {
-            if(!Array.isArray(topic.topicPosts)) {
-                res.render('topic.ejs', {topic: topic, posts: []});
-            }
-            else{
-                let numberOfPosts = topic.topicPosts.length;
-                let posts = [];
-                let i;
-                for (i = numberOfPosts-1 ; i >= numberOfPosts-11; i--){
-                    posts.push(Post.findOne({_id: topic.topicPosts[i]}));
-                }
-                res.render('topic.ejs', {topic: topic, posts: posts});
-            }
-            
-        }).catch((err) => { console.log(err); });
-});
+const Topic = require('../models/topic.js');
+const User = require('../models/user.js');
 
 router.get("/createTopic", (req, res) => {
     if(req.isAuthenticated()) {
-        res.render('createTopic.ejs');
+        res.render('createTopic');
     }  
     else {
         res.redirect('/auth/login');
@@ -48,6 +30,10 @@ router.post("/createTopic", (req,res) => {
     topic.save()
     .then((result) => {
         console.log(result);
+        User.findOne({_id: req.user.id}).then((user) => {
+            user.topicsFollowed.push(result._id);
+            user.topicsCreated.push(result._id);
+            user.save();}).catch((err) => console.log(err));
         res.redirect('/topic/'+topic.topicName);
     }).catch((err) => { 
         console.log(err);
@@ -58,5 +44,27 @@ router.post("/createTopic", (req,res) => {
         else res.redirect('/home');
     });
 });
+
+router.get("/:topicName", (req, res) => {
+    const topicName = req.params.topicName;
+    Topic.find({topicName: topicName})
+        .then((topic) => {
+            if(!Array.isArray(topic.topicPosts)) {
+                res.render('topic.ejs', {topic: topic, posts: []});
+            }
+            else{
+                let numberOfPosts = topic.topicPosts.length;
+                let posts = [];
+                let i;
+                for (i = numberOfPosts-1 ; i >= numberOfPosts-11; i--){
+                    posts.push(Post.findOne({_id: topic.topicPosts[i]}));
+                }
+                res.render('topic.ejs', {topic: topic, posts: posts});
+            }
+            
+        }).catch((err) => { console.log(err); });
+});
+
+
 
 module.exports = router;
