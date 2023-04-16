@@ -1,40 +1,63 @@
 <%- include("partials/header.ejs") -%>
-<%- include("partials/navbar.ejs") -%>
+    <%- include("partials/navbar.ejs") -%>
 
-    <div class="topic-body">
-        <div class="topic-content">
-            <div class="topic-info">
-                <img src="<%= topic.topicBanner %>" alt="/images/defaultBanner.jpg">
-                <img src="<%= topic.topicPhoto %>" alt="topic photo">
-                <h1> <%= topic.topicName %> </h1>
-                <h3> <%= topic.topicDescription %> </h3>
-                <button>Join</button>
+        <div class="topic-body">
+            <div class="topic-content">
+                <div class="banner-container"><img src="<%= topic.topicBanner %>" alt="/images/defaultBanner.jpg"></div>
+                <div class="topic-title">
+                    <div class="topic-photo"><img src="<%= topic.topicPhoto %>" alt="topic photo"></div>
+                    <div class="title-cont"><span>
+                            <%= topic.topicName %>
+                        </span>
+                        <button class="join-button">Join</button>
+                    </div>
+                </div>
             </div>
-            <button>Create Post</button>
         </div>
-    </div>
-    <%- include("partials/sidebar.ejs") -%>
-    <div class="postBox">
-        <% posts.forEach(function(post){ %>
-            <div class="post">
-                <div class="post-details">
-                <span class="postTopic"> <%= post.postTopic %> </span>
-                <span class="postAuthor"><%= post.postCreatorName %></span>
-                <span class="postDate"><%= post.postCreated %></span>
-                </div>
-                <h2 class="postTitle"><%= post.postTitle %></h2>
-                <% if(post.postImage != null){ %>
-                    <div class="postImage">
-                        <img src="<%= post.image %>" alt="post image" class="postImage">
-                    </div> 
-                <% } %>
-                <p class="postContent"><%= post.postContent %></p>
-                <div class="bottom-buttons">
-                    <button class="postButton">Enter Discussion <i class="fa-solid fa-right-to-bracket"></i></button>
-                    <button class="postButton">Save<i class="fa-regular fa-bookmark"></i></button>
-                </div>
+        <div class="topic-boxes">
+
+            <div class="postBox">
+                <% posts.forEach(function(post){ %>
+                    <div class="post">
+                        <div class="post-details">
+                            <span class="postTopic">
+                                <%= post.postTopic %>
+                            </span>
+                            <span class="postAuthor">
+                                <%= post.postCreatorName %>
+                            </span>
+                            <span class="postDate">
+                                <%= post.postCreated %>
+                            </span>
+                        </div>
+                        <h2 class="postTitle">
+                            <%= post.postTitle %>
+                        </h2>
+                        <% if(post.postImage !=null){ %>
+                            <div class="postImage">
+                                <img src="<%= post.image %>" alt="post image" class="postImage">
+                            </div>
+                            <% } %>
+                                <p class="postContent">
+                                    <%= post.postContent %>
+                                </p>
+                                <div class="bottom-buttons">
+                                    <button class="postButton">Enter Discussion <i
+                                            class="fa-solid fa-right-to-bracket"></i></button>
+                                    <button class="postButton">Save<i class="fa-regular fa-bookmark"></i></button>
+                                </div>
+                    </div>
+                    <% }); %>
             </div>
-        <% }); %>
-    </div>
-    <%- include("partials/about-sidebar.ejs") -%>
-    </div>
+            <div class="topic-desc">
+                <span>
+                    About the topic
+                </span>
+                <p>
+                    <%= topic.topicDescription %>
+                </p>
+                <hr>
+                <button>Create Post</button>
+            </div>
+        </div>
+        </div>
