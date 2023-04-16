@@ -22,7 +22,10 @@ const userSchema = new Schema({
         matches: [/.+@.+\..+/, "Please enter a valid e-mail address"]
     },
 
-    profilePhoto: String,
+    profilePhoto: {
+        type: String,
+        default: "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png"
+    },
 
     googleID:{
         type: String

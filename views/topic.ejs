@@ -1,30 +1,34 @@
 <%- include("partials/header.ejs") -%>
 <%- include("partials/navbar.ejs") -%>
-<%- include("partials/sidebar.ejs") -%>
+
     <div class="topic-body">
-        <img src="" alt="cover-pic">
         <div class="topic-content">
-            <h1> <%= topic.topicName %> </h1><button>Join</button>
-            <h3> <%= topic.topicDescription %> </h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque dolores consectetur enim, aliquid
-                a architecto accusamus cumque ut qui itaque libero!</p>
+            <div class="topic-info">
+                <img src="<%= topic.topicBanner %>" alt="/images/defaultBanner.jpg">
+                <img src="<%= topic.topicPhoto %>" alt="topic photo">
+                <h1> <%= topic.topicName %> </h1>
+                <h3> <%= topic.topicDescription %> </h3>
+                <button>Join</button>
+            </div>
             <button>Create Post</button>
         </div>
     </div>
+    <%- include("partials/sidebar.ejs") -%>
     <div class="postBox">
         <% posts.forEach(function(post){ %>
             <div class="post">
                 <div class="post-details">
-                <span class="postTopic"> <%= post.topic %> </span>
-                <span class="postAuthor"><%= post.authorName %></span>
-                <span class="postDate"><%= post.dateCreated %></span>
+                <span class="postTopic"> <%= post.postTopic %> </span>
+                <span class="postAuthor"><%= post.postCreatorName %></span>
+                <span class="postDate"><%= post.postCreated %></span>
                 </div>
-                <h2 class="postTitle"><%= post.title %></h2>
+                <h2 class="postTitle"><%= post.postTitle %></h2>
                 <% if(post.postImage != null){ %>
                     <div class="postImage">
                         <img src="<%= post.image %>" alt="post image" class="postImage">
                     </div> 
                 <% } %>
+                <p class="postContent"><%= post.postContent %></p>
                 <div class="bottom-buttons">
                     <button class="postButton">Enter Discussion <i class="fa-solid fa-right-to-bracket"></i></button>
                     <button class="postButton">Save<i class="fa-regular fa-bookmark"></i></button>

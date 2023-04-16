@@ -3,6 +3,7 @@ const router = express.Router();
 const Topic = require('../models/topic.js');
 const User = require('../models/user.js');
 const Post = require('../models/post.js');
+    
 
 router.get("/createTopic", (req, res) => {
     if(req.isAuthenticated()) {
@@ -46,7 +47,7 @@ router.post("/createTopic", (req,res) => {
         }
         else res.redirect('/home');
     });
-});
+}); 
 
 router.get("/:topicName", (req, res) => {
     const topicName = req.params.topicName;
@@ -60,16 +61,12 @@ router.get("/:topicName", (req, res) => {
                 let numberOfPosts = topic.topicPosts.length;
                 let posts = [];
                 let i;
-                for (i = numberOfPosts-1 ; i >= numberOfPosts-11; i--){
+                for (i = numberOfPosts-1 ; i >= numberOfPosts-11 && i>=0; i--){
                     posts.push(Post.findOne({_id: topic.topicPosts[i]}));
                 }
-                console.log(posts);
                 res.render('topic.ejs', {topic: topic, posts: posts});
             }
-            
         }).catch((err) => { console.log(err); });
 });
-
-
 
 module.exports = router;

@@ -13,9 +13,15 @@ const topicSchema = new Schema({
         required: true
     },
 
-    topicPhoto: String,
+    topicPhoto: {
+        type: String,
+        default: "https://cdn.pixabay.com/photo/2023/03/16/16/38/woods-7857082_1280.jpg"
+    },
 
-    topicBanner: String,
+    topicBanner: {
+        type: String,
+        default: "https://cdn.pixabay.com/photo/2016/08/03/09/04/universe-1566161_1280.jpg"
+    },
 
     topicCreator: {
         type: Schema.Types.ObjectId,
