@@ -3,7 +3,7 @@ const router = express.Router();
 const Topic = require('../models/topic.js');
 const User = require('../models/user.js');
 const Post = require('../models/post.js');
-    
+const nodeNotifier = require('node-notifier');
 
 router.get("/createTopic", (req, res) => {
     if(req.isAuthenticated()) {
@@ -43,30 +43,35 @@ router.post("/createTopic", (req,res) => {
         console.log(err);
         if(err.code === 11000) {
             console.log('Duplicate topic');
+            nodeNotifier.notify('Topic already exists. redirecting to that topic');
             res.redirect('/topic/'+topic.topicName);
         }
         else res.redirect('/home');
     });
 }); 
 
-router.get("/:topicName", (req, res) => {
-    const topicName = req.params.topicName;
-    Topic.findOne({topicName: topicName})
-        .then((topic) => {
-            if(!Array.isArray(topic.topicPosts)) {
-                console.log('No posts');
-                res.render('topic.ejs', {topic: topic, posts: []});
-            }
-            else{
-                let numberOfPosts = topic.topicPosts.length;
-                let posts = [];
-                let i;
-                for (i = numberOfPosts-1 ; i >= numberOfPosts-11 && i>=0; i--){
-                    posts.push(Post.findOne({_id: topic.topicPosts[i]}));
-                }
-                res.render('topic.ejs', {topic: topic, posts: posts});
-            }
-        }).catch((err) => { console.log(err); });
+router.get("/:topicName", async (req, res) => {
+    try {
+        
+        const topicName = req.params.topicName;
+        let topic = await Topic.find({topicName: topicName});
+        topic = topic[0];
+        let len = topic.topicPosts.length;
+        let post =[]
+        post = topic.topicPosts;
+        var posts = [];
+        for(let i = len-1; i>=0; i--) {
+            let epost = await Post.findById({_id: post[i]});
+            posts.push(epost);
+        }
+        res.render('topic.ejs', {topic: topic, posts: posts});
+    } catch (error) {
+        console.log(error);
+        res.status(404).render('404.ejs');  
+    }
 });
 
+
+
 module.exports = router;
+

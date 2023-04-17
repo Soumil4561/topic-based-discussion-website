@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "alert": "^5.1.4",
     "body-parser": "^1.20.2",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
@@ -8,11 +9,13 @@
     "mongodb": "^5.1.0",
     "mongoose": "^7.0.3",
     "mongoose-findorcreate": "^4.0.0",
+    "node-notifier": "^10.0.1",
     "nodemon": "^2.0.22",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^8.0.0"
+    "passport-local-mongoose": "^8.0.0",
+    "promise": "^8.3.0"
   },
   "name": "topic-based-discussion-website",
   "description": "A topic based discussion website made using Node, ExpressJS, EJS and MongoDB",

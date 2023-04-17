@@ -7,6 +7,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use(express.json());
 
 const passport = require('passport');
 const session = require('express-session');
