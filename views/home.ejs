@@ -21,13 +21,18 @@
                 </div>
             <% } %>
             <div class="bottom-buttons">
-                <button class="postButton">Enter Discussion <i class="fa-solid fa-right-to-bracket"></i></button>
-                <button class="postButton">Save<i class="fa-regular fa-bookmark"></i></button>
+                <div>
+                <button class="postButton" id="likebutton"><i class="fa-regular fa-thumbs-up"></i>  11k</button>
+                <button class="postButton"><i class="fa-regular fa-thumbs-down"></i> 0k</button>
+                <button class="postButton">Comment <i class="fa-regular fa-comment"></i></button>
+                </div>
+                <button class="postButton">Save  <i class="fa-regular fa-bookmark"></i></button>
             </div>
         </div>
     <% }); %>
 </div>
 <%- include("partials/about-sidebar.ejs") -%>
 </div>
+
 
 
