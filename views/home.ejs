@@ -10,16 +10,16 @@
             <span class="postAuthor"><%= post.author %></span>
             <span class="postDate"><%= post.date %></span>
             </div>
-            <h2 class="postTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut voluptatum reprehenderit atque magni enim ullam in quaerat autem harum quam?</h2>
-            <% if(post.postImage != null){ %>
+            <h2 class="postTitle"><%= post.postTitle %></h2>
+            <% if(post.postImage != ''){ %>
                 <div class="postImage">
                     <img src="<%= post.postImage %>" alt="post image" class="postImage">
                 </div> 
+            <% } else { %>
+                <div class="postContent">
+                    <p><%= post.postContent %></p>
+                </div>
             <% } %>
-            
-            <div class="postImage">
-                <img src="<%= post.image %>" alt="post image" class="postImage">
-            </div> 
             <div class="bottom-buttons">
                 <button class="postButton">Enter Discussion <i class="fa-solid fa-right-to-bracket"></i></button>
                 <button class="postButton">Save<i class="fa-regular fa-bookmark"></i></button>
