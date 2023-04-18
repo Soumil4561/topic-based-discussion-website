@@ -3,10 +3,12 @@ const router = express.Router();
 const Post = require('../models/post.js');
 const User = require('../models/user.js');
 const Topic = require('../models/topic.js');
+const {getUserFollowedTopics} = require('../controllers/home.js');
 
 router.get("/createPost", (req, res) => {
     if(req.isAuthenticated()) {
-        res.render('createPost.ejs');
+        const topics = getUserFollowedTopics(req.user.id);
+        res.render('createPost.ejs', {topics: topics});
     }  
     else {
         res.redirect('/auth/login');

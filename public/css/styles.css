@@ -151,6 +151,10 @@ body{
     border-style: solid;
     border-color: var(--primary-color);
 }
+
+.post:hover{
+    border-color: #ffffff;
+}
 .postImage{
     background-color: #030303;
     width: 100%;

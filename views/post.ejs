@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") -%>
+<%- include("partials/navbar.ejs") -%>
+
+<div class="post">
+    <div class="post-details">
+    <span class="postTopic"> <%= post.topic %> </span>
+    <span class="postAuthor"><%= post.author %></span>
+    <span class="postDate"><%= post.date %></span>
+    </div>
+    <h2 class="postTitle"><%= post.postTitle %></h2>
+    <% if(post.postImage != ''){ %>
+        <div class="postImage">
+            <img src="<%= post.postImage %>" alt="post image" class="postImage">
+        </div> 
+    <% } %>
+    <div class="postContent">
+        <p><%= post.postContent %></p>
+    </div>
+    <div class="bottom-buttons">
+        <button class="postButton">Enter Discussion <i class="fa-solid fa-right-to-bracket"></i></button>
+        <button class="postButton">Save<i class="fa-regular fa-bookmark"></i></button>
+    </div>
+</div>
