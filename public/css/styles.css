@@ -180,6 +180,11 @@ body{
 .post:hover{
     border-color: #ffffff;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+}
 .postImage{
     background-color: #030303;
     width: 100%;

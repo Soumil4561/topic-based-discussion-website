@@ -1,39 +1,47 @@
 <%- include("partials/header.ejs") -%>
-<%- include("partials/navbar.ejs") -%>
-<div class="content-body">
-<%- include("partials/sidebar.ejs") -%>
-<div class="postBox">
-    <% posts.forEach(function(post){ %>
-        <div class="post">
-            <div class="post-details">
-            <span class="postTopic"> <%= post.topic %> </span>
-            <span class="postAuthor"><%= post.author %></span>
-            <span class="postDate"><%= post.date %></span>
-            </div>
-            <h2 class="postTitle"><%= post.postTitle %></h2>
-            <% if(post.postImage != ''){ %>
-                <div class="postImage">
-                    <img src="<%= post.postImage %>" alt="post image" class="postImage">
-                </div> 
-            <% } else { %>
-                <div class="postContent">
-                    <p><%= post.postContent %></p>
+    <%- include("partials/navbar.ejs") -%>
+        <div class="content-body">
+            <%- include("partials/sidebar.ejs") -%>
+                <div class="postBox">
+                    <% posts.forEach(function(post){ %>
+                        <div class="post <%= post._id %>">
+                            <div class="post-details <%= post._id %>">
+                                <span class="postTopic">
+                                    <%= post.postTopic %>
+                                </span>
+                                <span class="postAuthor">
+                                    <%= post.postCreatorName %>
+                                </span>
+                                <span class="postDate">
+                                    <%= post.postCreated %>
+                                </span>
+                            </div>
+                            <h2 class="postTitle"><a href="/post/<%= post._id %>"><%= post.postTitle %></a></h2>
+                            <% if(post.postImage !='' ){ %>
+                                <div class="postImage <%= post._id %>">
+                                    <a href="/post/<%= post._id %>"><img src="<%= post.postImage %>" alt="post image" class="postImage"></a>
+                                </div>
+                                <% } else { %>
+                                    <div class="postContent <%= post._id %>">
+                                        <p>
+                                            <%= post.postContent %>
+                                        </p>
+                                    </div>
+                                    <% } %>
+                                        <div class="bottom-buttons">
+                                            <div>
+                                                <button class="postButton <%= post._id %>" id="likebutton"><i class="fa-regular <%= post._id %> fa-thumbs-up"></i><% post.likes %></button>
+                                                <button class="postButton"><i class="fa-regular fa-thumbs-down"></i><% post.disikes %></button>
+                                                <a href="/post/<%= post._id %>"><button class="postButton">Comment <i class="fa-regular fa-comment"></i></button></a>
+                                            </div>
+                                            <button class="postButton">Save <i class="fa-regular fa-bookmark"></i></button>
+                                        </div>
+                        </div>
+                        <% }); %>
                 </div>
-            <% } %>
-            <div class="bottom-buttons">
-                <div>
-                <button class="postButton" id="likebutton"><i class="fa-regular fa-thumbs-up"></i>  11k</button>
-                <button class="postButton"><i class="fa-regular fa-thumbs-down"></i> 0k</button>
-                <button class="postButton">Comment <i class="fa-regular fa-comment"></i></button>
-                </div>
-                <button class="postButton">Save  <i class="fa-regular fa-bookmark"></i></button>
-            </div>
+
+                <%- include("partials/about-sidebar.ejs") -%>
         </div>
-    <% }); %>
-</div>
-<%- include("partials/about-sidebar.ejs") -%>
-</div>
-<%- include("partials/footer.ejs") -%>
 
-
+        <%- include("partials/footer.ejs") -%>
 

@@ -18,6 +18,7 @@ router.get("/createPost", (req, res) => {
 router.post("/createPost", (req, res) => {
     console.log(req.body);
     if(req.isAuthenticated()) {
+        console.log(req.body.postImage);
         const post = new Post({
             postTitle: req.body.postTitle,
             postContent: req.body.postContent,
@@ -59,6 +60,12 @@ router.get("/:postID", (req, res) => {
     }).catch((err) => {
         console.log(err);
         res.render('404.ejs');} );
+});
+
+router.post("/:postID/like", (req, res) => {
+    const postID = req.body.postID;
+    console.log(postID);
+    return res.json({likes:101});
 });
 
 module.exports = router;

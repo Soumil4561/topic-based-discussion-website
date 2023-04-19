@@ -39,6 +39,7 @@
         let reader = new FileReader();
         reader.addEventListener("load", function(){
           displayImage.setAttribute("src", this.result);
+          
         });
         reader.readAsDataURL(file);
       }
