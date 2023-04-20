@@ -11,12 +11,11 @@ router.get("/", (req, res) => {
 });
 
 router.get('/home', async (req, res) => {
+    const user = User.findOne({_id: req.user.id});
     if(req.isAuthenticated()) {
         const topics = await getUserFollowedTopics(req.user.id);
         const posts = await getPosts(topics);
-        
-        
-        res.render('home', {topics: topics, posts: posts});
+        res.render('home', {topics: topics, posts: posts, user: user});
     }
     else {
         res.redirect('/auth/login');

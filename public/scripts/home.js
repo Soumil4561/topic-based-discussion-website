@@ -1,23 +1,10 @@
 $(".post").on("click", function(event) {
     var hasNumber = /\d/;
-    if(hasNumber.test(event.target.classList[1]) && event.target.classList.contains("postbutton")){
+    console.log(event.target.classList);
+    if(hasNumber.test(event.target.classList[1]) && !event.target.classList.contains("postbutton")){
         window.location.href = "/post/" + event.target.classList[1];
     }
 });
-
-var flag = false;
-
-// //const postbuttons = document.querySelectorAll(".postbutton");
-// postbuttons.forEach((postbutton) => {
-//     postbutton.addEventListener("click", (event) => {
-//         flag = true;
-//     });
-// });
-
-// $(".postbutton").on("click", function(event) {
-//     flag = true;
-// });
-
 
 $("#likebutton").on("click", async function(event) {
     const postID = event.target.classList[1];
@@ -28,6 +15,7 @@ $("#likebutton").on("click", async function(event) {
         };
     fetch("/post/" + postID + "/function", options).then(response =>response.json())
     .then(data => { 
+        console.log(data);
         $("#likes").html(data.likes);
      });
 });

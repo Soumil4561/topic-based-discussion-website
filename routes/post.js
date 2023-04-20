@@ -75,8 +75,24 @@ router.post("/:postID/function", (req, res) => {
     else if(type == "save") {
         return res.json({save:"true"});
     }
-
-    
 });
+
+router.delete("/:postID", async (req, res) => {
+    const postID = req.params.postID;
+    const post = await Post.findOne({_id: postID});
+    const topic = await Topic.findOne({topicName: post.postTopic});
+    topic.topicPosts = topic.topicPosts.filter((post) => post != postID);
+    topic.save();
+    const user = await User.findOne({_id: post.postCreatorID});
+    user.postsCreated = user.postsCreated.filter((post) => post != postID);
+    user.save();
+    Post.findOneAndRemove({_id: postID}).then((result) => {
+        console.log("Post deleted");
+        res.json({redirect: '/home'});
+    }).catch((err) => console.log(err));
+});
+
+
+
 
 module.exports = router;
