@@ -14,7 +14,7 @@ router.get('/home', async (req, res) => {
     if(req.isAuthenticated()) {
         const topics = await getUserFollowedTopics(req.user.id);
         const posts = await getPosts(topics);
-
+        
         
         res.render('home', {topics: topics, posts: posts});
     }
