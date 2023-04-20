@@ -30,11 +30,11 @@
                                     <% } %>
                                         <div class="bottom-buttons">
                                             <div>
-                                                <button class="postButton <%= post._id %>" id="likebutton"><i class="fa-regular <%= post._id %> fa-thumbs-up"></i><% post.likes %></button>
-                                                <button class="postButton"><i class="fa-regular fa-thumbs-down"></i><% post.disikes %></button>
-                                                <a href="/post/<%= post._id %>"><button class="postButton">Comment <i class="fa-regular fa-comment"></i></button></a>
+                                                <button class="postButton <%= post._id %>" id="likebutton"><i class="fa-regular <%= post._id %> fa-thumbs-up"></i><span id="likes"><%= post.likes %></span></button>
+                                                <button class="postButton <%= post._id %>"id="dislikebutton"><i class="fa-regular <%= post._id %> fa-thumbs-down"></i><span id="dislikes"><%= post.dislikes %></span></button>
+                                                <a href="/post/<%= post._id %>"><button class="postButton">Comment <i class="fa-regular <%= post._id %> fa-comment"></i></button></a>
                                             </div>
-                                            <button class="postButton">Save <i class="fa-regular fa-bookmark"></i></button>
+                                            <button class="postButton <%= post._id %>" id="savebutton">Save <i class="fa-regular <%= post._id %> fa-bookmark"></i></button>
                                         </div>
                         </div>
                         <% }); %>

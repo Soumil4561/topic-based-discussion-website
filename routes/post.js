@@ -62,10 +62,21 @@ router.get("/:postID", (req, res) => {
         res.render('404.ejs');} );
 });
 
-router.post("/:postID/like", (req, res) => {
+router.post("/:postID/function", (req, res) => {
     const postID = req.body.postID;
     console.log(postID);
-    return res.json({likes:101});
+    const type = req.body.type;
+    if(type == "like") {
+        return res.json({likes:101});
+    }
+    else if(type == "dislike") {
+        return res.json({dislikes:10});
+    }
+    else if(type == "save") {
+        return res.json({save:"true"});
+    }
+
+    
 });
 
 module.exports = router;
