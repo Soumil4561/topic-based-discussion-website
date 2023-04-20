@@ -16,10 +16,10 @@
   </div>
   <div class="dropdown">
     <button onclick="myFunction()" class="dropbtn">
-      <img src="https://img.icons8.com/parakeet/96/null/user-male-circle.png" />
+      <img src="<%= user.profilePhoto %>" />
     </button>
     <div id="myDropdown" class="dropdown-content">
-      <a href="#">Saved Posts</a>
+      <a href="#">Saved Posts <%= user.profilePhoto %></a>
       <a href="#">Liked Posts</a>
       <a href="#">Account</a>
       <a href="#">Logout</a>

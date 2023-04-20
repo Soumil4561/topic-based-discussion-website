@@ -404,7 +404,7 @@ textarea {
   margin-right: 25px;
   border-radius: 50%;
 }
-.dropbtn > img.resize {
+.dropbtn > img {
   width: 40px; /* you can use % */
   height: auto;
 }
