@@ -51,8 +51,8 @@ router.post("/createTopic", (req,res) => {
 }); 
 
 router.get("/:topicName", async (req, res) => {
+    const user = await User.findById({_id: req.user.id});
     try {
-        
         const topicName = req.params.topicName;
         let topic = await Topic.find({topicName: topicName});
         topic = topic[0];
@@ -63,13 +63,19 @@ router.get("/:topicName", async (req, res) => {
         for(let i = len-1; i>=0; i--) {
             let epost = await Post.findById({_id: post[i]});
             posts.push(epost);
+            
         }
-        res.render('topic.ejs', {topic: topic, posts: posts});
+        console.log(posts);
+        res.render('topic.ejs', {topic: topic, posts: posts, user:user});
     } catch (error) {
         console.log(error);
-        res.status(404).render('404.ejs');  
+        res.status(404).render('404.ejs',{user:user});  
     }
 });
+
+
+
+
 
 
 
