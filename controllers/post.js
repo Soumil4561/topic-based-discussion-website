@@ -1,12 +1,13 @@
 const User = require("../models/user.js");
 const Topic = require("../models/topic.js");
 const Post = require("../models/post.js");
+const { getUserFollowedTopics } = require("./home.js");
 
-const createPost = async (post, userID, topicID) => {
+const createPost = async (post, userID, topicName) => {
     try{
         const savepost = await post.save();
         await User.updateOne({_id: userID}, {$push: {posts: savepost._id}});
-        await Topic.updateOne({_id: topicID}, {$push: {posts: savepost._id}});
+        await Topic.updateOne({topicName: topicName}, {$push: {posts: savepost._id}});
         return savepost;
     }
     catch(err){
@@ -74,9 +75,16 @@ const unsavePost = async (postID, userID) => {
     .then(() => {return true}). catch(() => {return false});
 }
 
-const deletePost = async (postID, userID) => {
+const deletePost = async (post) => {
     try{
-
+        await Topic.updateOne({topicName: post.postTopic}, {$pull: {topicPosts: post._id}});
+        await User.updateOne({_id: post.postCreatorID}, {$pull: {postsCreated: post._id}});
+        await Post.findOneAndRemove({_id: post._id}).then((result) => {
+            return true;
+        }).catch((err) =>{
+            console.log(err);
+            return false;
+        });
     }
     catch(err){
         console.log(err);

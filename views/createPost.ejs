@@ -28,50 +28,6 @@
 <div class="new-image">
 <img id="display-image" class="create-image" src="https://cdn.pixabay.com/photo/2017/11/10/05/24/add-2935429_960_720.png " alt="">
 </div>
-<script>
-    let fileInput = document.getElementById("file-input");
-    let displayImage = document.getElementById("display-image");
-    fileInput.addEventListener("change", function(){
-      let file = this.files[0];
-      if(file){
-        let reader = new FileReader();
-        reader.addEventListener("load", function(){
-          displayImage.setAttribute("src", this.result);
-          
-        });
-        reader.readAsDataURL(file);
-      }
-    });
-    
-    const submitButton = document.querySelector('.button-submit');
-
-submitButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  const postTitle = document.getElementById('postTitle').value;
-  const postTopic = document.getElementById('postTopic').value;
-  const postContent = document.getElementById('postContent').value;
-  
-  const formData = new FormData();
-  formData.append('postTitle',postTitle);
-  formData.append('postTopic',postTopic);
-  formData.append('postContent', postContent);
-  formData.append('postImage',"image");
-  
-  var body = {
-    postTitle: postTitle,
-    postTopic: postTopic,
-    postContent: postContent
-  }
-  fetch('/post/createPost', {
-    method: 'POST',
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(body)
-  }).then(res => res.json()).then(data => {
-    window.location.href = '/post/' + data._id;
-  })
-});
-
-  </script>
   </div>
 <%- include("partials/footer.ejs") -%>
 </body>

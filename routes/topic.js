@@ -3,8 +3,7 @@ const router = express.Router();
 const Topic = require('../models/topic.js');
 const User = require('../models/user.js');
 const Post = require('../models/post.js');
-const nodeNotifier = require('node-notifier');
-const {joinTopic, leaveTopic} = require('../controllers/topic.js');
+const {createTopic, joinTopic, leaveTopic} = require('../controllers/topic.js');
 
 router.get("/createTopic", (req, res) => {
     if(req.isAuthenticated()) {
@@ -31,24 +30,8 @@ router.post("/createTopic", (req,res) => {
     if(req.body.topicBanner != null) {
         topic.topicBanner = req.body.topicBanner;
     }
-    console.log(topic);
-    topic.save()
-    .then((result) => {
-        console.log(result);
-        User.findOne({_id: req.user.id}).then((user) => {
-            user.topicsFollowed.push(result._id);
-            user.topicsCreated.push(result._id);
-            user.save();}).catch((err) => console.log(err));
-        res.redirect('/topic/'+topic.topicName);
-    }).catch((err) => { 
-        console.log(err);
-        if(err.code === 11000) {
-            console.log('Duplicate topic');
-            nodeNotifier.notify('Topic already exists. redirecting to that topic');
-            res.redirect('/topic/'+topic.topicName);
-        }
-        else res.redirect('/home');
-    });
+    const savedtopic = createTopic(topic, req.user.id);
+    res.redirect('/topic/'+topic.topicName);
 }); 
 
 router.get("/:topicName", async (req, res) => {
@@ -61,20 +44,11 @@ router.get("/:topicName", async (req, res) => {
     }
     try {
         const topicName = req.params.topicName;
-        let topic = await Topic.find({topicName: topicName});
-        topic = topic[0];
-        let len = topic.topicPosts.length;
-        let post =[]
-        post = topic.topicPosts;
-        var posts = [];
-        for(let i = len-1; i>=len-11; i--) {
-            let epost = await Post.findById({_id: post[i]});
-            posts.push(epost);
-        }
-        res.render('topic.ejs', {topic: topic, posts: posts, user:user});
+        const topic = await Topic.findOne({topicName: topicName});
+        const posts = await Post.find({postTopic: topicName}).sort({postCreated: -1}).limit(10);
+        res.render('topic.ejs',{topic: topic, posts: posts, user: user});
     } catch (error) {
         console.log(error);
-        res.status(404).render('404.ejs',{user:user});  
     }
 });
 
@@ -92,20 +66,4 @@ router.post("/follow", async (req, res) => {
     }
 });
 
-router.post("/test", (req, res) => {
-    const topicID = req.body.topicID;
-    const userID = req.body.userID;
-    const type = req.body.type;
-    if(type == "leave"){
-        leaveTopic(topicID,userID);
-        res.send("left topic");
-    }
-    else if(type == "join"){
-    joinTopic(topicID,userID);
-    res.send("joined topic");
-    }
-});
-
-
 module.exports = router;
-

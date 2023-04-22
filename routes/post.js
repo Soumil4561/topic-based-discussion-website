@@ -35,18 +35,9 @@ router.post("/createPost", async(req, res) => {
         if(req.user.username != null) {
             post.postCreatorName = req.user.username;
         }
-        post.save().then((result) => {
-            Topic.findOne({topicName: result.postTopic}).then((topic) => {
-                topic.topicPosts.push(result._id);
-                topic.save();
-            }).catch((err) => console.log(err));
-
-            User.findOne({_id: result.postCreatorID}).then((user) => {
-                user.postsCreated.push(result._id);
-                user.save();
-            }).catch((err) => console.log(err));
-            res.redirect('/post/'+post._id);
-        }).catch((err) => console.log(err));
+        const savedpost = await createPost(post);
+        console.log(savedpost);
+        return savedpost;
     }
     else {
         res.redirect('/auth/login');
@@ -97,12 +88,8 @@ router.delete("/:postID", async (req, res) => {
             res.redirect('/post/'+postID);
         }
         else{
-            console.log("Deleting post");
-            Topic.updateOne({topicName: post.postTopic}, {$pull: {topicPosts: postID}});
-            User.updateOne({_id: post.postCreatorID}, {$pull: {postsCreated: postID}});
-            Post.findOneAndRemove({_id: postID}).then((result) => {
-                console.log("Post deleted");
-            }).catch((err) => console.log(err));
+            deletePost(post);
+            res.json({redirect: '/home'});
         }
     }
 });

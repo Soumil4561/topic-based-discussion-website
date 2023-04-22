@@ -32,5 +32,4 @@ router.get("/home/profile", async (req, res) => {
   }
 });
 
-
 module.exports = router;
