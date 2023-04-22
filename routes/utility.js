@@ -26,19 +26,10 @@ router.post("/createComment", (req, res) => {
     }
 });
 
-router.post("/likeComment", (req, res) => {
+router.post("/comment", (req, res) => {
     if(req.isAuthenticated()) {
-        likeComment(req.body.commentID, req.user.id);
-        res.redirect('/post/'+req.body.commentPost);
-    }
-    else {
-        res.redirect('/auth/login');
-    }
-});
-
-router.post("/dislikeComment", (req, res) => {
-    if(req.isAuthenticated()) {
-        dislikeComment(req.body.commentID, req.user.id);
+        if (req.body.type == "like") return likeComment(req.body.commentID, req.user.id);
+        else if (req.body.type == "dislike") return dislikeComment(req.body.commentID, req.user.id);
         res.redirect('/post/'+req.body.commentPost);
     }
     else {
@@ -76,6 +67,5 @@ router.patch("/replyComment", (req, res) => {
         res.redirect('/auth/login');
     }
 });
-
 
 module.exports = router;
