@@ -21,4 +21,15 @@ router.get("/home", async (req, res) => {
   }
 });
 
+router.get("/home/profile" , async(res , req) =>{
+    if(req.isAuthenticated()){
+        const user = await User.findOne({_id : req.user.id});
+        const topics = await getUserFollowedTopics(req.user.id);
+        const posts = await Post.find({postCreatorID : req.user.id});
+        res.render("profile" , {topics : topics , posts : posts , user : user});
+}
+else{
+    res.redirect("/auth/login");
+}});
+
 module.exports = router;
