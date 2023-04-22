@@ -3,8 +3,9 @@ const router = express.Router();
 const Post = require('../models/post.js');
 const User = require('../models/user.js');
 const Topic = require('../models/topic.js');
+const Comment = require('../models/comment.js');
 const {getUserFollowedTopics} = require('../controllers/home.js');
-const {likePost, dislikePost, savePost, unsavePost, deletePost} = require('../controllers/post.js');
+const {createPost, likePost, dislikePost, savePost, unsavePost, deletePost} = require('../controllers/post.js');
 
 router.get("/createPost", (req, res) => {
     if(req.isAuthenticated()) {
@@ -16,7 +17,7 @@ router.get("/createPost", (req, res) => {
     }
 });
 
-router.post("/createPost", (req, res) => {
+router.post("/createPost", async(req, res) => {
     if(req.isAuthenticated()) {
         const post = new Post({
             postTitle: req.body.postTitle,
@@ -44,7 +45,7 @@ router.post("/createPost", (req, res) => {
                 user.postsCreated.push(result._id);
                 user.save();
             }).catch((err) => console.log(err));
-            res.redirect('/home');
+            res.redirect('/post/'+post._id);
         }).catch((err) => console.log(err));
     }
     else {
@@ -52,13 +53,15 @@ router.post("/createPost", (req, res) => {
     }
 });
 
-router.get("/:postID", (req, res) => {
-    postID = req.params.postID;
-    Post.findOne({_id: postID}).then((post) => {
-        res.render('post.ejs', {post: post});
-    }).catch((err) => {
-        console.log(err);
-        res.render('404.ejs');} );
+router.get("/:postID", async (req, res) => {
+    const postID = req.params.postID;
+    const post = await Post.findOne({_id: postID});
+    var comments = [];
+    for(var i = 0; i < post.comments.length; i++){
+        const comment = await Comment.findOne({_id: post.comments[i]});
+        comments.push(comment);
+    }
+    res.render('post.ejs', {post: post, comments: comments});
 });
 
 router.post("/:postID/function", async (req, res) => {

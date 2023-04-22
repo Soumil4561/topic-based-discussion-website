@@ -67,10 +67,9 @@ router.get("/:topicName", async (req, res) => {
         let post =[]
         post = topic.topicPosts;
         var posts = [];
-        for(let i = len-1; i>=0; i--) {
+        for(let i = len-1; i>=len-11; i--) {
             let epost = await Post.findById({_id: post[i]});
             posts.push(epost);
-            
         }
         res.render('topic.ejs', {topic: topic, posts: posts, user:user});
     } catch (error) {

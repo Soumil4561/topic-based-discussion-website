@@ -34,6 +34,9 @@ app.use('/post', postRouter);
 const topicRouter = require('./routes/topic.js');
 app.use('/topic', topicRouter);
 
+const utilityRouter = require('./routes/utility.js');
+app.use('/utility', utilityRouter);
+
 app.get('*', function(req, res){
     res.status(404).render('404.ejs');
   });

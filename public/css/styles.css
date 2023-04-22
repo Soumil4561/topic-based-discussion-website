@@ -226,9 +226,11 @@ a {
 }
 .bottom-buttons {
   margin-top: 10px;
+  margin-right: 20px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  display: flex;
+  justify-content: flex-end;
   align-items: left;
 }
 .bottom-buttons div {
@@ -362,12 +364,12 @@ textarea {
   border-radius: 20px;
 }
 
-.join{
+.join {
   background-color: var(--secondary-text-color);
   color: var(--primary-text-color);
 }
 
-.joined{
+.joined {
   background-color: var(--primary-text-color);
   color: var(--secondary-text-color);
 }
@@ -473,4 +475,94 @@ textarea {
 
 .show {
   display: block;
+}
+
+.comment-textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  color: white;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #12142c;
+  font-size: 16px;
+  resize: none;
+}
+
+.comment-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-button {
+  background-color: #0b4784;
+  position: relative;
+  right: 0;
+  border: none;
+  color: var(--primary-text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-left: 5%;
+  margin-bottom: 10px;
+}
+
+.comment-button:hover {
+  background-color: #0969c2;
+}
+
+.comment-section {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  margin: 20px;
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--primary-color);
+}
+
+.comment-section > h3 {
+  margin-left: 1%;
+  margin-bottom: 2rem;
+  color: #b2e0fd;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  background-color: #0000041c;
+  padding: 20px;
+  border-radius: 15px;
+  width: 91%;
+}
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #0612531d;
+  margin: 20px;
+  border-radius: 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--primary-color);
+}
+
+.commentAuthor {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #b2e0fd;
+}
+
+.commentDate {
+  margin-left: 0.3rem;
+  font-size: 0.8rem;
+  color: #c9cdd0a6;
 }
