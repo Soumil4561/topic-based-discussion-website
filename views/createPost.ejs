@@ -62,15 +62,13 @@ submitButton.addEventListener('click', (event) => {
     postTopic: postTopic,
     postContent: postContent
   }
-  console.log(body);
   fetch('/post/createPost', {
     method: 'POST',
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(body)
-  });
-
-
-  //appen as url to post image
+  }).then(res => res.json()).then(data => {
+    window.location.href = '/post/' + data._id;
+  })
 });
 
   </script>

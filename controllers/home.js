@@ -18,11 +18,18 @@ const getUserFollowedTopics  = async function (userId) {
 const getPosts = async function (topicFollowed) {
     try{
         let posts = [];
-        for (let i = 0; i < topicFollowed.length; i++) {
-            const post = await Post.find({postTopic: topicFollowed[i].topicName});
-            for (let j = 0; j < post.length; j++) {
-                posts.push(post[j]);
+        let counter1 = 0;
+        let counter2 = topicFollowed.length - 1;
+        while(posts.length < 10){
+            if(counter1 > counter2){
+                break;
             }
+            const post1 = await Post.find({postTopic: topicFollowed[counter1].topicName}, 'postTitle postCreatorID postTopic postContent postCreated').sort({postCreated: -1}).limit(10-posts.length);
+            const post2 = await Post.find({postTopic: topicFollowed[counter2].topicName}, 'postTitle postCreatorID postTopic postContent postCreated').sort({postCreated: -1}).limit(10-posts.length);
+            posts = posts.concat(post1);
+            posts = posts.concat(post2);
+            counter1++;
+            counter2--;
         }
         return posts;
     }

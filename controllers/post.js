@@ -2,6 +2,18 @@ const User = require("../models/user.js");
 const Topic = require("../models/topic.js");
 const Post = require("../models/post.js");
 
+const createPost = async (post, userID, topicID) => {
+    try{
+        const savepost = await post.save();
+        await User.updateOne({_id: userID}, {$push: {posts: savepost._id}});
+        await Topic.updateOne({_id: topicID}, {$push: {posts: savepost._id}});
+        return savepost;
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
 const likePost = async (postID, userID) => {
     //check if user has already liked the post
     if(await User.findOne({_id: userID, postsLiked: postID}) != null) {
@@ -62,6 +74,13 @@ const unsavePost = async (postID, userID) => {
     .then(() => {return true}). catch(() => {return false});
 }
 
-const deletePost = async (postID, userID) => {}
+const deletePost = async (postID, userID) => {
+    try{
 
-module.exports = {likePost, dislikePost, savePost, unsavePost, deletePost};
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+module.exports = {createPost, likePost, dislikePost, savePost, unsavePost, deletePost};

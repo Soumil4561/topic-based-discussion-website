@@ -18,6 +18,57 @@ router.post("/createComment", (req, res) => {
             commentParent: null,
             commentPost: req.body.commentPost
         });
+        return addComment(comment, req.body.commentPost, req.user.id);
+        res.redirect('/post/'+req.body.commentPost);
+    }
+    else {
+        res.redirect('/auth/login');
+    }
+});
+
+router.post("/likeComment", (req, res) => {
+    if(req.isAuthenticated()) {
+        likeComment(req.body.commentID, req.user.id);
+        res.redirect('/post/'+req.body.commentPost);
+    }
+    else {
+        res.redirect('/auth/login');
+    }
+});
+
+router.post("/dislikeComment", (req, res) => {
+    if(req.isAuthenticated()) {
+        dislikeComment(req.body.commentID, req.user.id);
+        res.redirect('/post/'+req.body.commentPost);
+    }
+    else {
+        res.redirect('/auth/login');
+    }
+});
+
+router.delete("/deleteComment", (req, res) => {
+    if(req.isAuthenticated()) {
+        deleteComment(req.body.commentID, req.body.commentPost);
+        res.redirect('/post/'+req.body.commentPost);
+    }
+    else {
+        res.redirect('/auth/login');
+    }
+});
+
+router.patch("/replyComment", (req, res) => {
+    if(req.isAuthenticated()) {
+        const comment = new Comment({
+            commentContent: req.body.commentContent,
+            commentCreatorID: req.user.id,
+            commentCreated: Date.now(),
+            commentCreatorName: req.user.username,
+            commentLikes: 0,
+            commentDislikes: 0,
+            commentReplies: [],
+            commentParent: req.body.commentParent,
+            commentPost: req.body.commentPost
+        });
         addComment(comment, req.body.commentPost, req.user.id);
         res.redirect('/post/'+req.body.commentPost);
     }
@@ -25,3 +76,6 @@ router.post("/createComment", (req, res) => {
         res.redirect('/auth/login');
     }
 });
+
+
+module.exports = router;

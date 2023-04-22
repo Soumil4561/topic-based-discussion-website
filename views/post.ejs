@@ -31,7 +31,7 @@
       class="comment-textarea"
     ></textarea>
     <div class="comment-div">
-      <button class="comment-button" id="comment-button">Comment</button>
+      <button class="comment-button" id="<%= post._id %>">Comment</button>
     </div>
   </div>
 </div>
@@ -42,16 +42,16 @@
     <% comments.forEach(function(comment){ %>
     <div class="comment">
       <div class="comment-details">
-        <span class="commentAuthor"><%= comment.author %></span>
-        <span class="commentDate"><%= comment.date %></span>
+        <span class="commentAuthor"><%= comment.commentCreatorName %></span>
+        <span class="commentDate"><%= comment.commentCreated %></span>
       </div>
       <div class="commentContent">
         <p><%= comment.commentContent %></p>
       </div>
       <br /><br />
-      <% } %>
+      <% }) %>
     </div>
   </div>
 </div>
 
-<script></script>
+<%- include("partials/footer.ejs") -%>
