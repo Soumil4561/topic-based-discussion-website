@@ -14,7 +14,7 @@
 <!-- <%- include("partials/sidebar"); -%> -->
 <div class="create-container">
 
-<form class="userPost" >
+<form class="userPost">
   <h1>Create Post</h1>
     <input id="postTitle" type="text" name="postTitle" class="postTitle" placeholder="Title">
     <input id="postTopic" type="text" name="postTopic" class="postTitle" placeholder="Topic">
@@ -50,15 +50,24 @@ submitButton.addEventListener('click', (event) => {
   const postTitle = document.getElementById('postTitle').value;
   const postTopic = document.getElementById('postTopic').value;
   const postContent = document.getElementById('postContent').value;
+  
   const formData = new FormData();
   formData.append('postTitle',postTitle);
   formData.append('postTopic',postTopic);
   formData.append('postContent', postContent);
   formData.append('postImage',"image");
- fetch('http://localhost:3000/post/createPost', {
+  
+  var body = {
+    postTitle: postTitle,
+    postTopic: postTopic,
+    postContent: postContent
+  }
+  console.log(body);
+  fetch('/post/createPost', {
     method: 'POST',
-    body: formData
-  })
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(body)
+  });
 
 
   //appen as url to post image

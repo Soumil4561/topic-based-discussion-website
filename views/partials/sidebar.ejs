@@ -5,7 +5,7 @@
     <button type="submit" class="icon-button"><i class="fa-solid fa-magnifying-glass"></i></button></div>
     <div class= 'topics'>
         <% for (var i = 0; i < topics.length; i++) { %>
-            <button><a href="/topic/<%= topics[i].topicName %>"><%= topics[i].topicName %></a></button>
+            <button class="topic-button"><a href="/topic/<%= topics[i].topicName %>"><%= topics[i].topicName %></a></button>
         <% } %>
     </div>
     </div>   

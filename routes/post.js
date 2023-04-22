@@ -17,9 +17,7 @@ router.get("/createPost", (req, res) => {
 });
 
 router.post("/createPost", (req, res) => {
-    console.log(req.body);
     if(req.isAuthenticated()) {
-        console.log(req.body.postImage);
         const post = new Post({
             postTitle: req.body.postTitle,
             postContent: req.body.postContent,
@@ -124,8 +122,10 @@ router.patch("/:postID", async (req, res) => {
 });
 
 router.post("/test", (req, res) => {
-    const result = likePost(req.body.post, req.body.id);
+    const result = savePost(req.body.post, req.body.id);
     console.log(result);
     res.send("Hello")});
+
+
 
 module.exports = router;
