@@ -4,12 +4,18 @@ $(".delete").on("click", function(event) {
         const postID = $(event.target).attr('id');
         console.log(postID);
         var options = {
-            method: "delete",
+            method: "DELETE",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({postID: postID})
         };
-        fetch("/post/"+postID, options).then(console.log(response => response.json()))
-        .then(window.location.href = "/home/profile");
+        fetch("/post/"+postID, options).then(res => {
+            if(res.status == 200){
+                res.json().then(data => {
+                    window.location.href = "/home/profile";
+                })
+            }
+        })
+        
     } 
 });
     //appen as url to post image });

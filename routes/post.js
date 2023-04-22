@@ -86,27 +86,22 @@ router.post("/:postID/function", async (req, res) => {
 
 router.delete("/:postID", async (req, res) => {
     if(!req.isAuthenticated()){
+        console.log("Not authenticated");
         res.redirect('/auth/login');
     }
     else{
-        if(req.user.id != req.body.postCreatorID){
-            res.redirect('/post/'+req.body.postID);
-            
+        const postID = req.body.postID;
+        const post = await Post.findOne({_id: postID});
+        if(req.user.id != post.postCreatorID){
+            console.log("Not authorized");
+            res.redirect('/post/'+postID);
         }
         else{
-            
-            const postID = req.params.postID;
-            console.log(postID);
-            const post = await Post.findOne({_id: postID});
-            const topic = await Topic.findOne({topicName: post.postTopic});
-            topic.topicPosts = topic.topicPosts.filter((post) => post != postID);
-            topic.save();
-            const user = await User.findOne({_id: post.postCreatorID});
-            user.postsCreated = user.postsCreated.filter((post) => post != postID);
-            user.save();
+            console.log("Deleting post");
+            Topic.updateOne({topicName: post.postTopic}, {$pull: {topicPosts: postID}});
+            User.updateOne({_id: post.postCreatorID}, {$pull: {postsCreated: postID}});
             Post.findOneAndRemove({_id: postID}).then((result) => {
                 console.log("Post deleted");
-                res.json({redirect: '/home'});
             }).catch((err) => console.log(err));
         }
     }
@@ -127,10 +122,18 @@ router.patch("/:postID", async (req, res) => {
     }
 });
 
-router.post("/test", (req, res) => {
-    const result = savePost(req.body.post, req.body.id);
-    console.log(result);
-    res.send("Hello")});
+
+
+router.delete("/test", async (req, res) => {
+    const postID = req.body.postID;
+    const post = await Post.findOne({_id: postID});
+    Topic.updateOne({topicName: post.postTopic}, {$pull: {topicPosts: postID}});
+    User.updateOne({_id: post.postCreatorID}, {$pull: {postsCreated: postID}});
+    Post.findOneAndRemove({_id: postID}).then((result) => {
+        console.log("Post deleted");
+        res.json({redirect: '/home'});
+    }).catch((err) => console.log(err));
+});
 
 
 

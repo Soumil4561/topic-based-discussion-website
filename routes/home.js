@@ -32,11 +32,5 @@ router.get("/home/profile", async (req, res) => {
   }
 });
 
-router.delete((req, res) => {
-  console.log("calling delete API");
-  console.log(req.body);
-  res.redirect("/home/profile");
-});
-
 
 module.exports = router;
