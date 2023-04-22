@@ -4,6 +4,7 @@ const Post = require('../models/post.js');
 const User = require('../models/user.js');
 const Topic = require('../models/topic.js');
 const {getUserFollowedTopics} = require('../controllers/home.js');
+const {likePost, dislikePost, savePost, unsavePost, deletePost} = require('../controllers/post.js');
 
 router.get("/createPost", (req, res) => {
     if(req.isAuthenticated()) {
@@ -62,37 +63,69 @@ router.get("/:postID", (req, res) => {
         res.render('404.ejs');} );
 });
 
-router.post("/:postID/function", (req, res) => {
+router.post("/:postID/function", async (req, res) => {
     const postID = req.body.postID;
-    console.log(postID);
     const type = req.body.type;
-    if(type == "like") {
-        return res.json({likes:101});
-    }
-    else if(type == "dislike") {
-        return res.json({dislikes:10});
-    }
-    else if(type == "save") {
-        return res.json({save:"true"});
+    if(req.isAuthenticated()){
+        if(type == "like"){
+            return likePost(postID, req.user.id);
+        }
+        else if(type == "dislike"){
+            return dislikePost(postID, req.user.id);
+        }
+        else if(type == "save"){
+            return savePost(postID, req.user.id);
+        }
+        else if(type == "unsave"){
+            return unsavePost(postID, req.user.id);
+        }
+        res.redirect('/post/'+postID);
     }
 });
 
 router.delete("/:postID", async (req, res) => {
-    const postID = req.params.postID;
-    const post = await Post.findOne({_id: postID});
-    const topic = await Topic.findOne({topicName: post.postTopic});
-    topic.topicPosts = topic.topicPosts.filter((post) => post != postID);
-    topic.save();
-    const user = await User.findOne({_id: post.postCreatorID});
-    user.postsCreated = user.postsCreated.filter((post) => post != postID);
-    user.save();
-    Post.findOneAndRemove({_id: postID}).then((result) => {
-        console.log("Post deleted");
-        res.json({redirect: '/home'});
-    }).catch((err) => console.log(err));
+    if(!req.isAuthenticated()){
+        res.redirect('/auth/login');
+    }
+    else{
+        if(req.user.id != req.body.postCreatorID){
+            res.redirect('/post/'+req.params.postID);
+        }
+        else{
+            const postID = req.params.postID;
+            const post = await Post.findOne({_id: postID});
+            const topic = await Topic.findOne({topicName: post.postTopic});
+            topic.topicPosts = topic.topicPosts.filter((post) => post != postID);
+            topic.save();
+            const user = await User.findOne({_id: post.postCreatorID});
+            user.postsCreated = user.postsCreated.filter((post) => post != postID);
+            user.save();
+            Post.findOneAndRemove({_id: postID}).then((result) => {
+                console.log("Post deleted");
+                res.json({redirect: '/home'});
+            }).catch((err) => console.log(err));
+        }
+    }
 });
 
+router.patch("/:postID", async (req, res) => {
+    const postID = req.params.postID;
+    const post = await Post.findOne({_id: postID});
+    if(req.user.id != post.postCreatorID){
+        res.redirect('/post/'+postID);
+    }
+    else{
+        const body = req.body;
+        Post.updateOne({_id: postID}, body).then((result) => {
+            console.log("Post updated");
+            res.json({redirect: '/post/'+postID});
+        }).catch((err) => console.log(err));
+    }
+});
 
-
+router.post("/test", (req, res) => {
+    const result = likePost(req.body.post, req.body.id);
+    console.log(result);
+    res.send("Hello")});
 
 module.exports = router;

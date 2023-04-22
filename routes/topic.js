@@ -4,6 +4,7 @@ const Topic = require('../models/topic.js');
 const User = require('../models/user.js');
 const Post = require('../models/post.js');
 const nodeNotifier = require('node-notifier');
+const {joinTopic, leaveTopic} = require('../controllers/topic.js');
 
 router.get("/createTopic", (req, res) => {
     if(req.isAuthenticated()) {
@@ -51,7 +52,13 @@ router.post("/createTopic", (req,res) => {
 }); 
 
 router.get("/:topicName", async (req, res) => {
-    const user = await User.findById({_id: req.user.id});
+    let user;
+    if(req.isAuthenticated()) {
+        user = await User.findOne({_id: req.user.id});
+    }
+    else {
+        user = null;
+    }
     try {
         const topicName = req.params.topicName;
         let topic = await Topic.find({topicName: topicName});
@@ -65,7 +72,6 @@ router.get("/:topicName", async (req, res) => {
             posts.push(epost);
             
         }
-        console.log(posts);
         res.render('topic.ejs', {topic: topic, posts: posts, user:user});
     } catch (error) {
         console.log(error);
@@ -73,10 +79,33 @@ router.get("/:topicName", async (req, res) => {
     }
 });
 
+router.post("/follow", async (req, res) => {
+    const topicID = req.body.topicID;
+    const type = req.body.type;
+    if(req.isAuthenticated()) {
+        if(type == "leave"){
+            return leaveTopic(topicID,req.user.id);
+        }
+        else if(type == "join") return joinTopic(topicID,req.user.id);
+    }
+    else {
+        res.redirect('/auth/login');
+    }
+});
 
-
-
-
+router.post("/test", (req, res) => {
+    const topicID = req.body.topicID;
+    const userID = req.body.userID;
+    const type = req.body.type;
+    if(type == "leave"){
+        leaveTopic(topicID,userID);
+        res.send("left topic");
+    }
+    else if(type == "join"){
+    joinTopic(topicID,userID);
+    res.send("joined topic");
+    }
+});
 
 
 module.exports = router;

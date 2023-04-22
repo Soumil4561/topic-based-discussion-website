@@ -16,19 +16,19 @@
   </div>
   <div class="dropdown">
     <button onclick="myFunction()" class="dropbtn">
-      <img src="<%= user.profilePhoto %>" />
+      <i class="fa-solid fa-user"></i>
     </button>
     <div id="myDropdown" class="dropdown-content">
-      <a href="#">Saved Posts <%= user.profilePhoto %></a>
+      <a href="#">Saved Posts </a>
       <a href="#">Liked Posts</a>
       <a href="#">Account</a>
-      <a href="#">Logout</a>
+      <a href="/auth/logout">Logout</a>
     </div>
   </div>
 </div>
 <script>
   function gotoAddPost() {
-    window.location.href = "/addPost";
+    window.location.href = "/topic/createTopic";
   }
 
   function myFunction() {

@@ -9,7 +9,17 @@
                     <div class="title-cont"><span>
                             <%= topic.topicName %>
                         </span>
-                        <button class="join-button">Join</button>
+                        
+                            <% if (user != null) { %>
+                                <% if(topic.topicCreator == user._id || user.topicsFollowed.includes(topic._id)){ %>
+                                    <button class="join-button joined" id= "<%=topic._id %>">Joined</button>
+                                <% } else { %>
+                                    <button class="join-button join" id = "<%=topic._id %>">Join</button>
+                                <% }%>
+                            <% } else { %>
+                                <button class="join-button">Join</button>
+                            <% } %>
+                        
                     </div>
                 </div>
             </div>
@@ -64,3 +74,5 @@
             </div>
         </div>
         </div>
+
+    <%- include("partials/footer.ejs") -%>

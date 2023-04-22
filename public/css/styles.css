@@ -342,6 +342,17 @@ textarea {
   padding: 0.5rem 1rem;
   border-radius: 20px;
 }
+
+.join{
+  background-color: var(--secondary-text-color);
+  color: var(--primary-text-color);
+}
+
+.joined{
+  background-color: var(--primary-text-color);
+  color: var(--secondary-text-color);
+}
+
 .join-button:hover {
   background-color: var(--primary-text-color);
   color: var(--secondary-text-color);
