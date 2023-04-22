@@ -1,20 +1,16 @@
 
 $(".join-button").on('click', function(event) {
-    console.log("clicked");
     const classList = event.target.classList;
     if(classList.contains("joined")) {
         // leave the topic
         const topicID = $(".join-button").attr('id');
-        console.log(topicID);
         var options = {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({topicID: topicID, type: "leave"})
         };
         fetch("/topic/follow", options).then(console.log(response => response.json()))
-        .then(
-            $(event.target).removeClass("joined").addClass("join").html("Join"));
-    }
+        .then($(event.target).removeClass("joined").addClass("join").html("Join"));}
     else if(classList.contains("join")) {
         // join the topic
         const topicID = $(".join-button").attr('id');
@@ -28,6 +24,7 @@ $(".join-button").on('click', function(event) {
         .then($(event.target).removeClass("join").addClass("joined").html("Joined"));
     }
     else{
-        console.log("error");
+        window.location.href = "/auth/login";
     }
 });
+

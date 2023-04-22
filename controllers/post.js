@@ -30,7 +30,7 @@ const dislikePost = async (postID, userID) => {
     }
     //check if user has already liked the post
     if(await User.findOne({_id: userID, postsLiked: postID}) != null) {
-        await User.updateOne({_id: userID}, {$pull: {likedPosts: postID}});
+        await User.updateOne({_id: userID}, {$pull: {postsLiked: postID}});
         const currentLikes = await Post.findOne({_id: postID}, "likes");
         var updatedLIkes = currentLikes.likes - 1;
         const body = {likes: updatedLIkes};
@@ -45,7 +45,6 @@ const dislikePost = async (postID, userID) => {
 }
 
 const savePost = async (postID, userID) => {
-    //check if user has already saved the post
     if(await User.findOne({_id: userID, savedPosts: postID}) != null) {
         return false;
     }
