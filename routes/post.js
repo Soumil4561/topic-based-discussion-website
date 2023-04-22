@@ -90,7 +90,7 @@ router.delete("/:postID", async (req, res) => {
     }
     else{
         if(req.user.id != req.body.postCreatorID){
-            res.redirect('/post/'+req.params.postID);
+            res.redirect('/post/'+req.body.postID);
             
         }
         else{
