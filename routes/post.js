@@ -44,7 +44,7 @@ router.post("/createPost", (req, res) => {
                 user.postsCreated.push(result._id);
                 user.save();
             }).catch((err) => console.log(err));
-            res.redirect('/post/'+post._id);
+            res.redirect('/home');
         }).catch((err) => console.log(err));
     }
     else {
@@ -88,9 +88,12 @@ router.delete("/:postID", async (req, res) => {
     else{
         if(req.user.id != req.body.postCreatorID){
             res.redirect('/post/'+req.params.postID);
+            
         }
         else{
+            
             const postID = req.params.postID;
+            console.log(postID);
             const post = await Post.findOne({_id: postID});
             const topic = await Topic.findOne({topicName: post.postTopic});
             topic.topicPosts = topic.topicPosts.filter((post) => post != postID);

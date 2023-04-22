@@ -23,13 +23,19 @@ router.get("/home", async (req, res) => {
 
 router.get("/home/profile", async (req, res) => {
   if (req.isAuthenticated()) {
-    const user = User.findOne({ _id: req.user.id });
+    const user = await User.findOne({ _id: req.user.id });
     const topics = getUserFollowedTopics(req.user.id);
     const posts = await Post.find({ postCreatorID: req.user.id });
     res.render("profile", { topics: topics, posts: posts, user: user });
   } else {
     res.redirect("/auth/login");
   }
+});
+
+router.delete((req, res) => {
+  console.log("calling delete API");
+  console.log(req.body);
+  res.redirect("/home/profile");
 });
 
 
