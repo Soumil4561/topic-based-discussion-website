@@ -3,10 +3,10 @@ const router = express.Router();
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 const User = require('../models/user');
+const Topic = require('../models/topic');
 const {addComment, likeComment, dislikeComment, deleteComment} = require('../controllers/comment');
 
 router.post("/createComment", (req, res) => {
-    console.log("here");
     if(req.isAuthenticated()) {
         const comment = new Comment({
             commentContent: req.body.commentContent,
@@ -70,6 +70,11 @@ router.patch("/replyComment", (req, res) => {
     }
 });
 
+router.get("/searchTopic/:topicName", async (req, res) => {
+    const topicName = req.params.topicName;
+    const topicList = await Topic.find({topicName : {$regex: topicName, $options: 'i'}},"topicName");
+    res.send(topicList);
+});
 
 
 module.exports = router;

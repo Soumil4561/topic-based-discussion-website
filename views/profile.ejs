@@ -24,13 +24,13 @@
                                     <a href="/post/<%= post._id %>"><img src="<%= post.postImage %>" alt="post image"
                                             class="postImage"></a>
                                 </div>
-                                <% } else { %>
-                                    <div class="postContent <%= post._id %>">
-                                        <p>
-                                            <%= post.postContent %>
-                                        </p>
-                                    </div>
-                                    <% } %>
+                            <% } else { %>
+                                <div class="postContent <%= post._id %>">
+                                    <p>
+                                        <%= post.postContent %>
+                                    </p>
+                                </div>
+                            <% } %>
                                         <form action="/post/<%= post._id %>/edit" method="GET">
                                             <button class="edit" id="<%= post._id %>">Edit post</button>
                                         </form>
