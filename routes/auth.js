@@ -30,31 +30,10 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/home",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
   },
-  function(accessToken, refreshToken, profile, cb) {
-    // //console.log(profile);
-
-    // const userinfo = User.findOne({googleID: profile.id});
-    // console.log(userinfo);
-
-    // if(userinfo === null) {
-    //     console.log("No user found");
-    //     const user = new User({
-    //         username: profile.displayName,
-    //         email: profile.emails[0].value,
-    //         googleID: profile.id,
-    //         profilePhoto: profile.photos[0].value
-    //     });   
-    //     user.save(function(err){
-    //         if(err) console.log(err);
-    //         return user;
-    //     });
-    // }
-    // else {
-    //     console.log("User found");
-    //     return userinfo;
-    // }
-
-    User.findOrCreate({ googleID: profile.id }, function (err,result) {
+  async function(accessToken, refreshToken, profile, cb) {
+    console.log(profile);
+    User.findOrCreate({ googleID: profile.id, profilePhoto: profile._json.picture, email: profile._json.email}, function (err,result) {
+        console.log(result);
         return cb(err, result);
     });
 }));
@@ -118,19 +97,30 @@ router.get('/logout', (req, res) => {
     });
 });
 
-// router.get('/setup', (req, res) => {
-//     console.log(req.profile);
-//     res.render('setup.ejs');
-// });
+router.get('/setup', (req, res) => {
+    res.render('setup.ejs', {user: req.user});
+});
 
-router.get('/google', passport.authenticate('google', { scope: ['profile',
-'https://www.googleapis.com/auth/userinfo.email'] }));
+router.post('/setup', async (req, res) => {
+    const UserID= req.user.id;
+    await User.updateOne({_id: UserID}, {username: req.body.username, email: req.user.email});
+    res.redirect('/home');
+});
+    
+
+
+router.get('/google', passport.authenticate('google', { scope: ['profile','https://www.googleapis.com/auth/userinfo.email'] }));
 
 router.get('/google/home', 
   passport.authenticate('google', { failureRedirect: 'auth/login' }),
   function(req, res) {
-    // Successful authentication, redirects home.
-    res.redirect('/home');
+    const userID = req.user.id;
+    if(req.user.username === undefined) {
+        res.redirect('/auth/setup');
+    }
+    else{
+        res.redirect('/home');
+    }
   });
 
 

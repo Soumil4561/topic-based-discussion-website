@@ -16,13 +16,22 @@
   </div>
   <div class="dropdown">
     <button onclick="myFunction()" class="dropbtn">
-      <i class="fa-solid fa-user"></i>
+      <% if(user != null){ %>
+        <img src="<%= user.profilePhoto %>" alt="/images/defaultProfilePhoto">
+      <% } else { %>
+        <i class="fa-solid fa-user"></i>
+      <% } %>
     </button>
     <div id="myDropdown" class="dropdown-content">
-      <a href="/home/saved">Saved Posts</a>
-      <a href="/home/liked">Liked Posts</a>
-      <a href="/home/profile">Profile</a>
-      <a href="/auth/logout">Logout</a>
+      <% if(user != null){ %>
+        <a href="/home/saved">Saved Posts</a>
+        <a href="/home/liked">Liked Posts</a>
+        <a href="/home/profile">Profile</a>
+        <a href="/auth/logout">Logout</a>
+      <% } else { %>
+        <a href="/auth/login">Login</a>
+        <a href="/auth/register">Register</a>
+      <% } %>
     </div>
   </div>
 </div>
