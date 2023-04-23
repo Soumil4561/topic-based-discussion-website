@@ -31,3 +31,25 @@ $(".button-submit").on('click', async (event) => {
         window.location.href = "/home/profile";
     })
 });
+
+$(".button-edit").on('click', async (event) => {
+    event.preventDefault();
+    const postTitle = $("#postTitle").val();
+    const postTopic = $("#postTopic").val();
+    const postContent = $("#postContent").val();
+    const postID = event.target.id;
+    var body = {
+        postTitle: postTitle,
+        postTopic: postTopic,
+        postContent: postContent
+    }
+    await fetch("/post/" + postID , {
+        method: 'PATCH',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+    }).then(response => response.json()).then(data => {
+        console.log(data);
+        console.log("hello");
+        window.location.href = "/home/profile";
+    }) 
+});     
