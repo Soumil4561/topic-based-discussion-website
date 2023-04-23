@@ -5,7 +5,7 @@ $(".comment-button").click(function(event){
         commentContent: commentContent,
         commentPost: postID
     }
-    console.log(body);
+    console.log("Comment button clicked");
     fetch("/utility/createComment", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -13,7 +13,7 @@ $(".comment-button").click(function(event){
     }).then(res => {
         if(res.status == 200){
             res.json().then(data => {
-                window.location.href = data.redirect;
+                window.location.reload();
             })
         }
     })
