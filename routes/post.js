@@ -109,19 +109,14 @@ router.patch("/:postID", async (req, res) => {
     }
 });
 
-
-
-router.delete("/test", async (req, res) => {
-    const postID = req.body.postID;
-    const post = await Post.findOne({_id: postID});
-    Topic.updateOne({topicName: post.postTopic}, {$pull: {topicPosts: postID}});
-    User.updateOne({_id: post.postCreatorID}, {$pull: {postsCreated: postID}});
-    Post.findOneAndRemove({_id: postID}).then((result) => {
-        console.log("Post deleted");
-        res.json({redirect: '/home'});
-    }).catch((err) => console.log(err));
-});
-
-
+router.get("/:postID/edit", async (req, res) => {
+    const postID = req.params.postID;
+    if (req.isAuthenticated()) {
+        const post = await Post.findOne({_id: postID});
+        res.render('editPost.ejs', {post: post});
+    }
+    else {
+        res.redirect('/auth/login');
+}});
 
 module.exports = router;

@@ -3,10 +3,14 @@ const Post = require('../models/post');
 const User = require('../models/user');
 
 const addComment = async (comment, postID, userID) =>{
+    console.log("addComment");
     try{
-        await Post.updateOne({_id: postID}, {$push: {comments: comment._id}});
-        await User.updateOne({_id: userID}, {$push: {commentsCreated: comment._id}});
-        await comment.save();
+        console.log(comment);
+        const savedcomment = await comment.save();
+        console.log(savedcomment);
+        await Post.updateOne({_id: postID}, {$push: {comments: savedcomment._id}});
+        await User.updateOne({_id: userID}, {$push: {commentsCreated: savedcomment._id}});
+        return savedcomment;
     }
     catch(err){
         console.log(err);

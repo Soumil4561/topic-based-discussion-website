@@ -6,6 +6,7 @@ const User = require('../models/user');
 const {addComment, likeComment, dislikeComment, deleteComment} = require('../controllers/comment');
 
 router.post("/createComment", (req, res) => {
+    console.log("here");
     if(req.isAuthenticated()) {
         const comment = new Comment({
             commentContent: req.body.commentContent,
@@ -18,7 +19,8 @@ router.post("/createComment", (req, res) => {
             commentParent: null,
             commentPost: req.body.commentPost
         });
-        return addComment(comment, req.body.commentPost, req.user.id);
+        
+        addComment(comment, req.body.commentPost, req.user.id);
         res.redirect('/post/'+req.body.commentPost);
     }
     else {
@@ -67,5 +69,7 @@ router.patch("/replyComment", (req, res) => {
         res.redirect('/auth/login');
     }
 });
+
+
 
 module.exports = router;

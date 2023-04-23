@@ -10,16 +10,14 @@
 </head>
 <body>
 <%- include("partials/header.ejs") -%>
-<%- include("partials/navbar"); -%>
-<!-- <%- include("partials/sidebar"); -%> -->
 <div class="create-container">
 
 <form class="userPost">
   <h1>Edit Post</h1>
-    <input id="postTitle" type="text" name="postTitle" class="postTitle" placeholder="Title" >
-    <input id="postTopic" type="text" name="postTopic" class="postTitle" placeholder="Topic">
-    <textarea id="postContent" name="postContent" cols="30" rows="20" class="postContent" placeholder="Text"></textarea>
-    <div class="file-input">
+    <input id="postTitle" type="text" name="postTitle" class="postTitle" value="<%= post.postTitle %>">
+    <input id="postTopic" type="text" name="postTopic" class="postTitle" value="<%= post.postTopic %>>
+    <textarea id="postContent" name="postContent" cols="30" rows="20" class="postContent" value="<%= post.postContent %>></textarea>
+    <div class= "file-input">
     <input type="file" accept=".jpg" name="postImage" id="file-input" >
     <label for="file-input" >Add image<i class="fa-solid fa-photo-film"></i></label> 
     </div>
