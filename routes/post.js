@@ -52,7 +52,11 @@ router.get("/:postID", async (req, res) => {
         const comment = await Comment.findOne({_id: post.comments[i]});
         comments.push(comment);
     }
-    res.render('post.ejs', {post: post, comments: comments});
+    if(req.isAuthenticated()){
+        res.render('post.ejs', {post: post, comments: comments, user: req.user});
+    } else {
+        res.render('post.ejs', {post: post, comments: comments, user: null});
+    }
 });
 
 router.post("/:postID/function", async (req, res) => {
