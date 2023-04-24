@@ -61,3 +61,16 @@
     font-size: 15px;
     padding-left: 10px;
 }
+input#file-input {
+    display: none;
+  }
+  
+  input#file-input + label {
+    background-color: var(--secondary-text-color);
+    width: 120px;
+    height: 20px;
+    border-radius: 9px;
+    font-size: 15px;
+    border: 2px solid #9ec3ff;
+    text-align: center;
+  }

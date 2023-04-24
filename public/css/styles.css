@@ -265,19 +265,7 @@ a {
   color: white;
 }
 
-input#file-input {
-  display: none;
-}
 
-input#file-input + label {
-  background-color: var(--secondary-text-color);
-  width: 120px;
-  height: 20px;
-  border-radius: 9px;
-  font-size: 15px;
-  border: 2px solid #9ec3ff;
-  text-align: center;
-}
 
 .button-submit {
   background-color: var(--secondary-text-color);
@@ -296,10 +284,6 @@ textarea {
   resize: none;
 }
 
-.create-post-title {
-  margin-left: 5%;
-}
-
 .error {
   width: 100%;
   margin: 0 auto;
@@ -307,123 +291,8 @@ textarea {
   object-fit: contain;
 }
 
-.banner-container {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  z-index: -10;
-}
-.banner-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.topic-photo {
-  position: absolute;
-  top: 220px;
-  left: 30%;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 2px solid var(--secondary-text-color);
-}
-.topic-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.topic-title {
-  margin: 0;
-  width: 100%;
-  height: 100px;
-  background-color: var(--secondary-color);
-}
-
-.topic-title .title-cont {
-  margin-left: 38%;
-  height: 60%;
-  width: 60%;
-}
-.topic-title .title-cont span {
-  height: 100%;
-  width: 40%;
-  margin-right: 40%;
-  font-size: 35px;
-  margin-top: 10px;
-}
-.join-button {
-  margin-top: 10px;
+.create-post-title {
   margin-left: 5%;
-  background-color: var(--secondary-text-color);
-  border: none;
-  color: var(--primary-text-color);
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-}
-
-.join {
-  background-color: var(--secondary-text-color);
-  color: var(--primary-text-color);
-}
-
-.joined {
-  background-color: var(--primary-text-color);
-  color: var(--secondary-text-color);
-}
-
-.join-button:hover {
-  background-color: var(--primary-text-color);
-  color: var(--secondary-text-color);
-}
-.topic-desc {
-  width: 20%;
-  background-color: var(--secondary-color);
-  border-radius: 5px;
-  padding: 15px;
-  margin-top: 30px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--primary-color);
-}
-.topic-desc p {
-  margin-left: 5%;
-  width: 80%;
-  font-size: 20spx;
-  color: var(--primary-text-color);
-}
-.topic-desc span {
-  margin-left: 5%;
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.518);
-}
-.topic-desc hr {
-  width: 90%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.topic-boxes {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.topic-desc button {
-  width: 70%;
-  margin-left: 15%;
-  margin-top: 10px;
-  background-color: var(--secondary-text-color);
-  border: none;
-  color: var(--primary-text-color);
-  font-size: 15px;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-}
-.topic-desc button:hover {
-  background-color: var(--primary-text-color);
-  color: var(--secondary-text-color);
 }
 
 .dropbtn {
