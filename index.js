@@ -38,7 +38,11 @@ const utilityRouter = require('./routes/utility.js');
 app.use('/utility', utilityRouter);
 
 app.get('*', function(req, res){
-    res.status(404).render('404.ejs');
+    if(req.isAuthenticated()){
+        res.status(404).render('404.ejs', {user: req.user});
+    } else {
+        res.status(404).render('404.ejs', {user: null});
+    }
   });
 
 const PORT = process.env.PORT || 3000;

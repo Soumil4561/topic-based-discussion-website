@@ -7,7 +7,7 @@ const {createTopic, joinTopic, leaveTopic} = require('../controllers/topic.js');
 
 router.get("/createTopic", (req, res) => {
     if(req.isAuthenticated()) {
-        res.render('createTopic');
+        res.render('createTopic',{user: req.user});
     }  
     else {
         res.redirect('/auth/login');

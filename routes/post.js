@@ -10,7 +10,7 @@ const {createPost, likePost, dislikePost, savePost, unsavePost, deletePost} = re
 router.get("/createPost", (req, res) => {
     if(req.isAuthenticated()) {
         const topics = getUserFollowedTopics(req.user.id);
-        res.render('createPost.ejs', {topics: topics});
+        res.render('createPost.ejs', {topics: topics, user: req.user});
     }  
     else {
         res.redirect('/auth/login');

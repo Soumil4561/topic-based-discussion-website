@@ -7,7 +7,7 @@ const User = require('../models/user.js');
 const getUserFollowedTopics  = async function (userId) {
     try{
         const topicFollowed = await User.findById(userId, 'topicsFollowed');
-        const topics = await Topic.find({_id: {$in: topicFollowed.topicsFollowed}},'topicName');
+        const topics = await Topic.find({_id: {$in: topicFollowed.topicsFollowed}},'topicName topicPhoto');
         return topics;
     }
     catch(err){

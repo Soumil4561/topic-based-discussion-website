@@ -32,4 +32,15 @@ router.get("/home/profile", async (req, res) => {
   }
 });
 
+router.get("/home/liked", async (req, res) => {
+  if (req.isAuthenticated()) {
+    const user = await User.findOne({ _id: req.user.id });
+    const posts = await Post.find({ _id: { $in: user.postsLiked } });
+    const topics = await getUserFollowedTopics(req.user.id);
+    res.render("liked", { posts: posts, user: user, topics: topics});
+  } else {
+    res.redirect("/auth/login");
+  }
+  });
+
 module.exports = router;
